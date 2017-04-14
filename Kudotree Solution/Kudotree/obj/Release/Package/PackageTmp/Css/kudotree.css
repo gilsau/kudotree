@@ -1,0 +1,303 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*------------ FONTS ------------*/
+
+@font-face{ 
+font-family: 'Frente'; 
+src: url('../fonts/FrenteH1-Regular-webfont.eot'); 
+src: url('../fonts/FrenteH1-Regular-webfont86d7.eot?iefix') format('eot'), url('../fonts/FrenteH1-Regular-webfont.woff') format('woff'), url('../fonts/FrenteH1-Regular-webfont.ttf') format('truetype'), url('../fonts/FrenteH1-Regular-webfont.svg#webfont') format('svg'); 
+}
+
+.OpenSans {
+	font-family: 'Open Sans', sans-serif;	
+}
+/*------------ BOOTSTRAP OVERRIDES ------------*/
+body {
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff
+}
+.carousel-inner {
+	background-color:#404040;	
+}
+
+.container-fluid.headerHp {
+    margin-right: -15px;
+}
+
+.container-hp-carousel {
+	margin-left: -15px;
+    margin-right: -15px;	
+}
+
+.glyphicon-lg {
+	font-size:35px;
+}
+/* ------------ MARGIN STACKS ----------
+	stack these classes onto elements to add extra space
+*/
+.fl {float:left;}
+.fr {float:right;}
+
+.append-1 {
+    margin-right: 5px;
+}
+.append-2 {
+    margin-right: 10px;
+}
+.append-3 {
+    margin-right: 15px;
+}
+.append-4 {
+    margin-right: 20px;
+}
+.append-5 {
+    margin-right: 25px;
+}
+.append-6 {
+    margin-right: 30px;
+}
+.append-7 {
+    margin-right: 35px;
+}
+.append-8 {
+    margin-right: 40px;
+}
+.append-9 {
+    margin-right: 45px;
+}
+.append-10 {
+    margin-right: 50px;
+}
+.prepend-1 {
+    margin-left: 5px;
+}
+.prepend-2 {
+}
+.prepend-3 {
+    margin-left: 15px;
+}
+.prepend-4 {
+    margin-left: 20px;
+}
+.prepend-5 {
+    margin-left: 25px;
+}
+.prepend-6 {
+    margin-left: 30px;
+}
+.prepend-7 {
+    margin-left: 35px;
+}
+.prepend-8 {
+    margin-left: 40px;
+}
+.prepend-9 {
+    margin-left: 45px;
+}
+.prepend-10 {
+    margin-left: 50px;
+}
+.prepend-top-1 {
+    margin-top: 5px;
+}
+.prepend-top-2 {
+    margin-top: 10px;
+}
+.prepend-top-3 {
+    margin-top: 15px;
+}
+.prepend-top-4 {
+    margin-top: 20px;
+}
+.prepend-top-5 {
+    margin-top: 25px;
+}
+.prepend-top-6 {
+    margin-top: 30px;
+}
+.prepend-top-7 {
+    margin-top: 35px;
+}
+.prepend-top-8 {
+    margin-top: 40px;
+}
+.prepend-top-9 {
+    margin-top: 45px;
+}
+.prepend-top-10 {
+    margin-top: 50px;
+}
+.append-bottom-1 {
+    margin-bottom: 5px;
+}
+.append-bottom-2 {
+    margin-bottom: 10px;
+}
+.append-bottom-3 {
+    margin-bottom: 15px;
+}
+.append-bottom-4 {
+    margin-bottom: 20px;
+}
+.append-bottom-5 {
+    margin-bottom: 25px;
+}
+.append-bottom-6 {
+    margin-bottom: 30px;
+}
+.append-bottom-7 {
+    margin-bottom: 35px;
+}
+.append-bottom-8 {
+    margin-bottom: 40px;
+}
+.append-bottom-9 {
+    margin-bottom: 45px;
+}
+.append-bottom-10 {
+    margin-bottom: 50px;
+}
+
+
+
+/* ----------- STYLES -----------*/
+
+.headerHp {
+	background:url(../images/hp_header_bg.png) top repeat-x;
+	padding:10px;
+}
+
+.headerHp #signin {
+	margin:10px 0 0 0;	
+}
+.headerHp .form-inline {
+    padding-right: 15px;
+    padding-top: 1%;
+}
+.hpJoinBox {
+	background:rgba(40,40,40,0.7); 
+	padding:25px;
+	text-align:center;
+}
+.hpJoinBoxLg {
+	position:absolute; 
+	top:10%; 
+	right:10%; 
+	width:50%; 
+	height: 70%; 
+	z-index:13;	
+}
+.hpJoinBox.hpJoinBoxSmall {
+    background-color: #282826;
+}
+.hpJoinBox h2 {
+	font-family:Frente, sans-serif;
+	color:#9ac83a;
+	font-size:36px;
+}
+
+.hpJoinBox p {
+	font-family:'Open Sans', sans-serif;
+	font-size:14px;
+	color:#c5c7c4;
+}
+
+.hpJoinBox h3{
+	font-family:'Open Sans', sans-serif;
+	font-weight:300;
+	color:#ffffff;
+	font-size:25px;
+	margin-bottom:15px;
+}
+
+.hpJoinBox .form-inline {
+    padding-top: 2%;
+}
+
+.hpJoinBox .hpJoinBoxSmall {
+	background:rgba(40,40,40,0.7); 
+	padding:25px;
+	text-align:center;
+	width:100% !important;
+}
+
+.hpMegaSearch {
+	padding:10px 50px 50px 50px;
+	text-align:center;
+	background: #ec971f; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ec971f 0%, #ad4a14 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ec971f), color-stop(100%,#ad4a14)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ec971f 0%,#ad4a14 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ec971f 0%,#ad4a14 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ec971f 0%,#ad4a14 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ec971f 0%,#ad4a14 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec971f', endColorstr='#ad4a14',GradientType=0 ); /* IE6-8 */
+}
+
+.hpMegaSearch h2 {
+	font-family: 'Frente', sans-serif; 
+	color:#ffffff;
+	text-shadow: 1px 1px 1px #ad4a14;
+	font-size:60px;
+	text-align:center;
+
+}
+input#megasearch {
+    min-width: 400px;
+}
+
+.hpHow {
+	padding:75px 0 0 0;
+	background:url(../images/hp_bg_clouds.jpg) repeat-x #ffffff;	
+
+}
+
+.hpHow h2 {
+	font-family: 'Frente', sans-serif; 
+	color:#ffffff;
+	text-shadow: 1px 1px 1px #51899f;
+	font-size:75px;
+	text-align:center;
+
+}
+
+.hpBenefits p, .hpWhoIsKudo p{
+	font-weight:300;
+}
+
+
+.hpWhoIsKudo {
+	background:url(../images/hpGrass.png) center bottom no-repeat;
+	margin-left:-15px;
+	margin-right:-15px;
+}
+.hpWhoIsKudo h2 {
+	font-family: 'Frente', sans-serif; 
+	color:#444;
+	font-size:60px;
+	margin-left: auto;
+    margin-right: auto;	
+	margin-top:100px;
+
+}
+
+.hpTree {
+	background:url(../images/hp_tree.png) bottom center no-repeat;
+	min-height:640px;	
+}
+
+.hpJoin2 {
+	background-color:#9ac83a	;
+	padding:50px;
+}
+
+.footer {
+	border-top: 1px solid #adadad;
+	padding:50px;
+	margin-left:auto;
+	margin-right:auto;
+}

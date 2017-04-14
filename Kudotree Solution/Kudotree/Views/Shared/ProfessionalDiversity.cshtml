@@ -1,0 +1,30 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body" style="padding:0px;margin:0px;">
+        <div id="profDivGraph" style="height:200px;width:200px;"></div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading panel-head1">
+                PROFESSION STATS
+            </div>
+            <div class="panel-heading panel-head1">
+                <small>SORT BY</small>
+                <select>
+                    <option value="0">Most Preferred</option>
+                    <option value="1">Most Connections</option>
+                </select>
+            </div>
+            <div class="panel-body" style="padding:0px;overflow-y:auto;height:200px;">
+                <table id="tblPieChartRightPanel" class="table table-condensed table-striped table-bordered table-hover">
+                    <tbody>
+                        @for(int p = 1; p < 21; p++)
+                        {
+                            <tr>
+                                <td>show person's info</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

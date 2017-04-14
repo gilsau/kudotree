@@ -1,0 +1,47 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@model IEnumerable<Conversation>
+
+@{
+    IEnumerable<Conversation> convos = Model;
+    Account acctCurrent = (Account)Session["User"];
+    
+    if(acctCurrent != null)
+    {
+        //Messages
+        int msgCounter = 0;
+        foreach (Conversation convo in convos)
+        {
+            //Only show 10 in drop down
+            msgCounter++;
+            if (msgCounter > 10)
+            {
+                break;
+            }
+            
+            Result scrMsgs;
+            Communication comm = CommSvc.GetMostRecentMessageByConversationId(convo.Id, out scrMsgs);
+            Account profileAcct = comm.SenderId == acctCurrent.Id ? comm.Account : comm.Account1;
+
+            string msgPrev = comm.Msg != null ? comm.Msg : string.Empty;
+            
+            if(comm.Msg != null){
+                msgPrev = comm.Msg.Length > 30 ? string.Format("{0}...", comm.Msg.Substring(0, 30)) : comm.Msg;
+            }
+                    
+            <li style="text-align:left;width:100%;">
+                <a href="~/messages/?convoId=@comm.ConversationId" style="margin:0px;padding:5px;">
+                    <div class="row">
+                        <div class="col-sm-3"><img class="circularProfilePic2" src="~/profilepics/@profileAcct.ProfilePic" style="width:25px;height:25px;margin:2px 0px 2px 5px;" /></div>
+                        <div class="col-sm-9">
+                            <div><small><b>@string.Format("{0} {1}", profileAcct.Firstname, profileAcct.Lastname)</b></small></div>
+                            <div class="text-info"><small style="font-size:x-small;white-space:normal;">@msgPrev</small></div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="divider" style="margin:0px;"></li>
+        }
+        <li class="text-center"><a href="~/messages/">View All Messages</a></li>
+    }
+}

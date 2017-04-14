@@ -1,0 +1,2 @@
+;/* module-key = 'com.atlassian.jirawallboard.atlassian-wallboard-plugin:configure-wallboard-dialog-resources', location = 'script/configDialog.js' */
+var AJS=AJS||{};AJS.WALLBOARD=AJS.WALLBOARD||{};(function(){AJS.$(this).one("load",function(){if(JIRA.FormDialog){new JIRA.FormDialog({id:"configure_wallboard_dialog",trigger:"#configure_wallboard"})}else{new AJS.FormPopup({id:"configure_wallboard_dialog",trigger:"#configure_wallboard"})}AJS.$("#configure_wallboard").attr("href",contextPath+"/ConfigureWallboard!default.jspa")})})();;

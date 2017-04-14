@@ -1,0 +1,127 @@
+
+*************************************************************************************************
+2014.10.23 00:01:51 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 158
+
+*************************************************************************************************
+2014.10.23 00:03:39 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 105
+
+*************************************************************************************************
+2014.10.23 00:03:39 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 105
+
+*************************************************************************************************
+2014.10.23 19:26:56 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 158
+
+*************************************************************************************************
+2014.10.23 19:39:48 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 158
+
+*************************************************************************************************
+2014.10.23 20:10:20 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 105
+
+*************************************************************************************************
+2014.10.23 20:43:45 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 158
+
+*************************************************************************************************
+2014.10.23 21:51:36 ||| Gilbert Sauceda ||| gilbert.sauceda@gmail.com ||| MESSAGE:The underlying provider failed on Commit. --- INNER-EXCEPTION:System.Data.SqlClient.SqlException (0x80131904): The transaction operation cannot be performed because there are pending requests working on this transaction.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalTransaction.Commit()
+   at System.Data.SqlClient.SqlTransaction.Commit()
+   at System.Data.EntityClient.EntityTransaction.Commit()
+ClientConnectionId:27a81a09-3e20-40f4-a054-7fa301392955 --- SOURCE:System.Data.Entity --- STACK-TRACE:   at System.Data.EntityClient.EntityTransaction.Commit()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Kudotree.Models.CommSvc.GetMessagesByConversationId(Nullable`1 conversationId, Boolean newMessages, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 76
+
+*************************************************************************************************
+2014.10.23 22:00:49 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.10.23 22:00:50 ||| Not Available ||| Not Available ||| MESSAGE:Object reference not set to an instance of an object. --- INNER-EXCEPTION: --- SOURCE:Kudotree --- STACK-TRACE:   at Kudotree.Models.CommSvc.GetMessagesByConversationId(Nullable`1 conversationId, Boolean newMessages, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 76
+
+*************************************************************************************************
+2014.10.23 22:00:51 ||| Not Available ||| Not Available ||| MESSAGE:Object reference not set to an instance of an object. --- INNER-EXCEPTION: --- SOURCE:Kudotree --- STACK-TRACE:   at Kudotree.Models.CommSvc.GetMessagesByConversationId(Nullable`1 conversationId, Boolean newMessages, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 76
+
+*************************************************************************************************
+2014.10.23 22:12:20 ||| Gilbert Sauceda ||| gilbert.sauceda@gmail.com ||| MESSAGE:An error occurred while starting a transaction on the provider connection. See the inner exception for details. --- INNER-EXCEPTION:System.Data.SqlClient.SqlException (0x80131904): New transaction is not allowed because there are other threads running in the session.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at System.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at System.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+ClientConnectionId:b60afb4d-19ce-4039-a599-8d9cc27023e6 --- SOURCE:System.Data.Entity --- STACK-TRACE:   at System.Data.EntityClient.EntityConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.EntityClient.EntityConnection.BeginTransaction()
+   at System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at Kudotree.Models.CommSvc.GetMessagesByConversationId(Nullable`1 conversationId, Boolean newMessages, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 81
+
+*************************************************************************************************
+2014.10.23 22:45:27 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109

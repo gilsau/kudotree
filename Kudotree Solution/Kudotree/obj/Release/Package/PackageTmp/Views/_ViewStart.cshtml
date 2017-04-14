@@ -1,0 +1,10 @@
+﻿@{  //Redirect to login
+    if (HttpContext.Current.Session["User"] == null && Request.Url.ToString().ToLower().IndexOf("login") == -1) {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+        
+    //User's logged in
+    else{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}

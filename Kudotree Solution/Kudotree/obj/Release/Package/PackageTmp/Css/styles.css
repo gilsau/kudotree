@@ -1,0 +1,277 @@
+﻿body {
+    color: #464646;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
+}
+
+.popover {
+	max-width: 800px;
+	width: auto;
+}
+
+.page-header
+{
+    margin-top: 0px;
+}
+
+.panel-body
+{
+    padding-top: 0px;
+    overflow-y: auto;
+}
+
+.featuredImg
+{
+    margin-bottom: 15px;
+}
+
+.navbar-brand
+{
+    margin: 0px;
+    padding: 5px;
+}
+
+#header
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+#footer
+{
+    visibility: hidden;
+}
+
+.navbar, #footer, .navbar-fixed-bottom
+{
+    background: -webkit-linear-gradient(left top, #8fd273, #f8f8f8); /* For Safari */
+    background: -o-linear-gradient(bottom right, #8fd273, #f8f8f8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #8fd273, #f8f8f8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #8fd273, #f8f8f8); /* Standard syntax */
+}
+
+h2.title, .jumbotron
+{
+    font-size: 24px;
+    background-color: #def7f5;
+    padding: 5px;
+    margin: 0px;
+}
+
+#tblPricing tbody tr td input, #tblPricing thead tr th, #tblCharges thead tr th
+{
+    text-align: center;
+    padding: 0px;
+    font-size: 8pt;
+}
+
+#tblCharges tbody tr td input, #tblCharges tbody tr td textarea
+{
+    text-align: left;
+    vertical-align: top;
+    padding: 5px;
+    font-size: 8pt;
+}
+
+.panel-head1
+{
+    font-weight: bold;
+}
+
+.panel-default .panel-heading, ul.nav-tabs .active a, ul.nav-tabs a:hover, .modal-header
+{
+    font-weight: bold;
+    background: -webkit-linear-gradient(left top, #e9f8da, #fff); /* For Safari */
+    background: -o-linear-gradient(bottom right, #e9f8da, #fff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #e9f8da, #fff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #e9f8da, #fff); /* Standard syntax */
+}
+
+ul.nav-tabs a
+{
+    font-weight: bold;
+}
+
+.panel-default
+{
+    border: solid 1px #e9f8da;
+}
+
+.panel-primary
+{
+    background-color: #f5f8f1;
+    border: none;
+}
+
+#tblCalendarRightPanel tbody tr td, #tblCalendarRightPanel thead tr th
+{
+    font-size: 6pt;
+}
+
+#tblPieChartRightPanel tbody tr td
+{
+    font-size: 8pt;
+}
+
+.modal-title
+{
+    background-color: #e7e7e7;
+    margin: 0px;
+    padding: 5px;
+}
+
+.btn-green
+{
+    background-color: #1c6900;
+    border: solid 1px #fff;
+    color: #fff;
+}
+
+#loginMainBlock, #loginMainBlock2, .silverGradient
+{
+    padding-top: 0px;
+    background: -webkit-linear-gradient(#fff, #cbcbcb); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#fff, #cbcbcb); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#fff, #cbcbcb); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#fff, #cbcbcb); /* Standard syntax */
+}
+
+#mainPanel, #leftPanel, #rightPanel
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.roundImg
+{
+  border: solid 3px #e7e7e7;
+  width: 100%;
+  margin-left: 10px;
+    
+    /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 30%;
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 30%;
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 30%;
+}
+
+.btn-primary
+{
+    background-color: #1c6900;
+    border: solid 1px #fff;
+    color: #fff;
+}
+
+.profile-input
+{
+    margin: 2px;
+    padding: 1px;
+    height: 25px;
+    font-size: 10pt;
+}
+
+.profile-text-medium
+{
+    font-size: 12pt;
+}
+
+.alert-warning
+{
+    background-color: #e80000;
+    border: solid 1px #e80000;
+    color: #fff;
+}
+
+.alert-info
+{
+    background-color: #fff;
+    border: solid 1px #8fd273;
+    color: #000;
+}
+
+.loading
+{
+    height: 25px;
+    display: none;
+    margin: 0px 10px 0px 10px;
+}
+
+#convoPanel, #convoList
+{
+    overflow-y: scroll;
+}
+
+#tblConvoList tbody tr td
+{
+    padding: 5px;
+    text-align: left;
+}
+
+.btnMsg, #btnConnect, #btnKudos, #btnPrefer
+{
+    font-size: 12px;
+}
+
+img.ImgMaxRender
+{
+    width: auto;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+small
+{
+    font-size: 11px;
+}
+
+.divHover:hover
+{
+    background-color: #def7f5;
+}
+
+#mainContainer
+{
+    background-color: #fff;
+    padding-top: 20px;
+    min-height: 1000px;
+}
+
+@media handheld and (max-width: 1024px) {
+    #mainContainer
+    {
+        width: 100%;
+    }
+
+    #headerLinks
+    {
+        width: 200px;
+        margin: auto;
+    }
+
+    #headerLinks > a
+    {
+        font-size: 8pt;
+    }
+}
+
+@media screen and (min-width: 1024px) and (orientation: landscape) 
+{
+    #headerLinks
+    {
+        width: 400px;
+        margin: auto;
+    }
+
+}

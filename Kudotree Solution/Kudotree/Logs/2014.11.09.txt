@@ -1,0 +1,306 @@
+
+*************************************************************************************************
+2014.11.09 00:40:16 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 00:40:16 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 00:40:16 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 00:40:31 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 02:36:32 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 02:36:32 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 02:36:33 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 02:36:33 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 02:36:34 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 02:36:34 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 02:36:41 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 03:37:02 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 03:37:02 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 03:45:26 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 03:46:17 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 03:46:20 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 03:46:21 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 04:44:47 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 04:44:48 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 04:46:19 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 04:46:19 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 05:21:28 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 05:42:03 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 06:17:10 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 06:32:42 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 07:25:36 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 07:56:51 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 07:56:51 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 07:56:52 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 08:19:22 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 22:28:58 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 22:29:01 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 22:29:01 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162
+
+*************************************************************************************************
+2014.11.09 22:29:01 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 109
+
+*************************************************************************************************
+2014.11.09 22:29:02 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Where[TSource](IQueryable`1 source, Expression`1 predicate)
+   at Kudotree.Models.CommSvc.GetMyNotifications(Int32 howMany, Result& scr) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 162

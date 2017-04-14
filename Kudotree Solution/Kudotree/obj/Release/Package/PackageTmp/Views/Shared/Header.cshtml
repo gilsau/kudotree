@@ -1,0 +1,116 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@{
+    Account acctCurrent = (Account)Session["User"];
+
+    //Messages
+    Result result;
+    IEnumerable<Conversation> convos = CommSvc.GetMyConversations(true, 100, out result);
+    
+    //Notifications
+    IEnumerable<Communication> notes = CommSvc.GetMyNotifications(100, out result);
+
+    string keywords = Request.Form["Keywords"] != null ? Request.Form["Keywords"].ToString() : string.Empty;
+}
+
+<div class="navbar navbar-default navbar-top" style="margin:0px;">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-sm-2 col-xs-2" style="padding:0px;">
+                <a href="~/home"><img src="@Url.Content("~/images/kudotree2.png")" style="width:100%;margin-top:25px;" /></a>
+            </div>
+            <div class="col-sm-8 col-xs-8">
+                <form id="frmSearch" action="/home/search" method="post">
+                    <div style="width:100%;margin:10px auto auto auto;z-index:200;">
+                        <div style="width:100%;" class="input-group">
+                            <div class="input-group-addon dropdown" style="width:30px;">
+                                <a id="dropdownSearchDownArrow" class="dropdown-toggle glyphicon glyphicon-chevron-down" data-toggle="dropdown"></a>
+                                <ul class="dropdown-menu" style="text-align:left;">
+                                    <li><a class="dropdownSearchOption" data-glyphicon="glyphicon-chevron-down" href="#"><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;All</a></li>
+                                    <li><a class="dropdownSearchOption" data-glyphicon="glyphicon-wrench" href="#"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Services</a></li>
+                                    <li><a class="dropdownSearchOption" data-glyphicon="glyphicon-briefcase" href="#"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;Companies</a></li>
+                                    <li><a class="dropdownSearchOption" data-glyphicon="glyphicon-user" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;People</a></li>
+                                </ul>
+                            </div>
+                            <input id="Keywords" name="Keywords" type="text" class="form-control" placeholder="Search for services, people, skills, companies and more ..." value="@keywords" />
+                            <span style="width:30px;" class="input-group-addon"><a class="searchBtn" href="#"><span style="width:15px;" class="glyphicon glyphicon-search"></span></a></span>
+                        </div>
+                    </div>
+                </form>
+                <div id="headerLinks" style="text-align:center;margin:auto;z-index:100;">
+                    <ul class="nav navbar-nav">
+                        <li><a href="~/home">Home</a></li>
+                        <li><a href="~/companies">Companies</a></li>
+                        <li><a href="~/kudotree/manage">Kudotree</a></li>
+                        <li><a href="~/marketplace">Market Place</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-2" style="padding:0px;">
+                <div style="margin:20px 0px 20px 0px;"><a href="#">Advanced</a></div>
+                <div class="row-fluid">
+                    <table style="width:100%;border-spacing:0px;">
+                        <tr>
+                            <td style="width:20%;">
+                                <div class="dropdown">
+                                    <a title="Request a need" class="dropdown-toggle btn btn-sm btn-default glyphicon glyphicon-registration-mark" data-toggle="dropdown"></a>
+                                    <div id="requestBox" class="dropdown-menu" style="padding:0px;border:none;">
+                                        <div class="panel panel-default" style="padding:0px;margin:0px;">
+                                            <div class="panel-body" style="height:auto;width:220px;padding:0px;">
+                                                <h4 style="padding:0px 0px 0px 5px;">Network</h4>
+                                                <div style="font-size:10pt;margin-left:5px;"><input name="radNetwork" type="radio" value="1" /> Personal (Close Network)</div>
+                                                <div style="font-size:10pt;margin-left:5px;"><input name="radNetwork" type="radio" value="2" checked="checked" /> Professional (Entire Network)</div>
+                                                <div class="divider"></div>
+                                                <h4 style="padding:0px 0px 0px 5px;">Request Type</h4>
+                                                <input type="text" class="form-control" style="width:200px;height:30px;padding:2px;margin-left:5px;" placeholder="service or profession" />
+                                                <div class="divider"></div>
+                                                <button class="btn btn-default btn-sm center-block" style="margin-bottom:5px;">Request</button>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:20%;">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle btn btn-sm btn-default glyphicon glyphicon-calendar" data-toggle="dropdown"></a>
+                                    <div id="calendarContainer" class="dropdown-menu keep-open" style="padding:0px;border:none;">
+                                        <div class="margin5">
+                                            @{ ViewBag.Year = DateTime.Now.Year; ViewBag.Month = DateTime.Now.Month; }
+                                            @Html.Partial("Calendar", 1)
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="width:20%;">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle btn btn-sm btn-default glyphicon glyphicon-envelope" data-toggle="dropdown"><b id="msgCount" style="padding:2px;">@convos.Count()</b></a>
+                                    <ul id="ulMsgs" class="dropdown-menu" style="padding:0px;margin:0px;">
+                                        @Html.Partial("MsgDropDown", convos)
+                                    </ul>
+                                </div>
+                            </td>
+                            <td style="width:20%;">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle btn btn-sm btn-default glyphicon glyphicon-exclamation-sign" data-toggle="dropdown"><b id="noteCount" style="padding:2px;">@notes.Count()</b></a>
+                                    <ul id="ulNotes" class="dropdown-menu" style="padding:0px;margin:0px;">
+                                        @Html.Partial("NotesDropDown", notes)
+                                    </ul>
+                                </div>
+                            </td>
+                            <td style="width:20%;">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle btn btn-sm btn-default glyphicon glyphicon-user" data-toggle="dropdown"></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="~/account/profile"><span style="width:15px;" class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                        <li><a href="~/account/settings"><span style="width:15px;" class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
+                                        <li><a href="~/account/login?logout=1"><span style="width:15px;" class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

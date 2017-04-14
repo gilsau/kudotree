@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KudotreeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="KudotreeModelStoreContainer">
+    <EntitySet Name="Account" EntityType="KudotreeModel.Store.Account" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountAssociation" EntityType="KudotreeModel.Store.AccountAssociation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountBusiness" EntityType="KudotreeModel.Store.AccountBusiness" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountConnection" EntityType="KudotreeModel.Store.AccountConnection" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountEducation" EntityType="KudotreeModel.Store.AccountEducation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountExperience" EntityType="KudotreeModel.Store.AccountExperience" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountInterest" EntityType="KudotreeModel.Store.AccountInterest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountKudo" EntityType="KudotreeModel.Store.AccountKudo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountPost" EntityType="KudotreeModel.Store.AccountPost" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountResume" EntityType="KudotreeModel.Store.AccountResume" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountSkill" EntityType="KudotreeModel.Store.AccountSkill" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountToken" EntityType="KudotreeModel.Store.AccountToken" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Action" EntityType="KudotreeModel.Store.Action" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AssociationType" EntityType="KudotreeModel.Store.AssociationType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Business" EntityType="KudotreeModel.Store.Business" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BusinessProductService" EntityType="KudotreeModel.Store.BusinessProductService" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CommMethod" EntityType="KudotreeModel.Store.CommMethod" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Communication" EntityType="KudotreeModel.Store.Communication" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="KudotreeModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Interest" EntityType="KudotreeModel.Store.Interest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Network" EntityType="KudotreeModel.Store.Network" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NetworkMember" EntityType="KudotreeModel.Store.NetworkMember" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Privacy" EntityType="KudotreeModel.Store.Privacy" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="State" EntityType="KudotreeModel.Store.State" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="KudotreeModel.Store.Status" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_Account_Country" Association="KudotreeModel.Store.fk_Account_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Account_State" Association="KudotreeModel.Store.fk_Account_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountAssociation_Account" Association="KudotreeModel.Store.fk_AccountAssociation_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountAssociation" EntitySet="AccountAssociation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountAssociation_AssociationType" Association="KudotreeModel.Store.fk_AccountAssociation_AssociationType">
+      <End Role="AssociationType" EntitySet="AssociationType" />
+      <End Role="AccountAssociation" EntitySet="AccountAssociation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountAssociation_Business" Association="KudotreeModel.Store.fk_AccountAssociation_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="AccountAssociation" EntitySet="AccountAssociation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountBusiness_Account" Association="KudotreeModel.Store.fk_AccountBusiness_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountBusiness" EntitySet="AccountBusiness" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountBusiness_Business" Association="KudotreeModel.Store.fk_AccountBusiness_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="AccountBusiness" EntitySet="AccountBusiness" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountConnection_Account" Association="KudotreeModel.Store.fk_AccountConnection_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountConnection" EntitySet="AccountConnection" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountConnection_Connection" Association="KudotreeModel.Store.fk_AccountConnection_Connection">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountConnection" EntitySet="AccountConnection" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountEducation_Account" Association="KudotreeModel.Store.fk_AccountEducation_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountEducation" EntitySet="AccountEducation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountEducation_Business" Association="KudotreeModel.Store.fk_AccountEducation_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="AccountEducation" EntitySet="AccountEducation" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountExperience_Account" Association="KudotreeModel.Store.fk_AccountExperience_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountExperience" EntitySet="AccountExperience" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountExperience_Business" Association="KudotreeModel.Store.fk_AccountExperience_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="AccountExperience" EntitySet="AccountExperience" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountInterest_Account" Association="KudotreeModel.Store.fk_AccountInterest_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountInterest" EntitySet="AccountInterest" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountInterest_Interest" Association="KudotreeModel.Store.fk_AccountInterest_Interest">
+      <End Role="Interest" EntitySet="Interest" />
+      <End Role="AccountInterest" EntitySet="AccountInterest" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountKudo_Giver" Association="KudotreeModel.Store.fk_AccountKudo_Giver">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountKudo" EntitySet="AccountKudo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountKudo_Receiver" Association="KudotreeModel.Store.fk_AccountKudo_Receiver">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountKudo" EntitySet="AccountKudo" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountPost_ParentPost" Association="KudotreeModel.Store.fk_AccountPost_ParentPost">
+      <End Role="AccountPost" EntitySet="AccountPost" />
+      <End Role="AccountPost1" EntitySet="AccountPost" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountPost_PostedBy" Association="KudotreeModel.Store.fk_AccountPost_PostedBy">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountPost" EntitySet="AccountPost" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountPost_Privacy" Association="KudotreeModel.Store.fk_AccountPost_Privacy">
+      <End Role="Privacy" EntitySet="Privacy" />
+      <End Role="AccountPost" EntitySet="AccountPost" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountResume_Account" Association="KudotreeModel.Store.fk_AccountResume_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountResume" EntitySet="AccountResume" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountSkill_Account" Association="KudotreeModel.Store.fk_AccountSkill_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountSkill" EntitySet="AccountSkill" />
+    </AssociationSet>
+    <AssociationSet Name="fk_AccountToken_Account" Association="KudotreeModel.Store.fk_AccountToken_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountToken" EntitySet="AccountToken" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Business_Country" Association="KudotreeModel.Store.fk_Business_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Business_State" Association="KudotreeModel.Store.fk_Business_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="Business" EntitySet="Business" />
+    </AssociationSet>
+    <AssociationSet Name="fk_BusinessProductService_Business" Association="KudotreeModel.Store.fk_BusinessProductService_Business">
+      <End Role="Business" EntitySet="Business" />
+      <End Role="BusinessProductService" EntitySet="BusinessProductService" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Communication_Account_Receiver" Association="KudotreeModel.Store.fk_Communication_Account_Receiver">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Communication_Account_Sender" Association="KudotreeModel.Store.fk_Communication_Account_Sender">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Communication_Action" Association="KudotreeModel.Store.fk_Communication_Action">
+      <End Role="Action" EntitySet="Action" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Communication_CommMethod" Association="KudotreeModel.Store.fk_Communication_CommMethod">
+      <End Role="CommMethod" EntitySet="CommMethod" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Communication_Status" Association="KudotreeModel.Store.fk_Communication_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Communication" EntitySet="Communication" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Network_Account_Owner" Association="KudotreeModel.Store.fk_Network_Account_Owner">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Network" EntitySet="Network" />
+    </AssociationSet>
+    <AssociationSet Name="fk_NetworkMember_Account" Association="KudotreeModel.Store.fk_NetworkMember_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="NetworkMember" EntitySet="NetworkMember" />
+    </AssociationSet>
+    <AssociationSet Name="fk_NetworkMember_Network" Association="KudotreeModel.Store.fk_NetworkMember_Network">
+      <End Role="Network" EntitySet="Network" />
+      <End Role="NetworkMember" EntitySet="NetworkMember" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Lastname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="CountryId" Type="int" />
+    <Property Name="Zipcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="Summary" Type="text" />
+    <Property Name="BusinessOwner" Type="bit" />
+    <Property Name="BusinessOwnerKudoHelp" Type="bit" />
+    <Property Name="JobSeeker" Type="bit" />
+    <Property Name="JobSeekerKudoHelp" Type="bit" />
+    <Property Name="Student" Type="bit" />
+    <Property Name="StudentKudoHelp" Type="bit" />
+    <Property Name="ProfilePic" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResumeFile" Type="nvarchar" MaxLength="100" />
+    <Property Name="Token" Type="uniqueidentifier" />
+    <Property Name="TokenExpired" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AccountAssociation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="AssociationTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="AccountBusiness">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountConnection">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="ConnectionId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountEducation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="YearAttendedFrom" Type="datetime" />
+    <Property Name="YearAttendedTo" Type="datetime" />
+    <Property Name="Certification" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AccountExperience">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="DateFrom" Type="datetime" />
+    <Property Name="DateTo" Type="datetime" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExtraInfo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="AccountInterest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="InterestId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountKudo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ReceiverId" Type="int" Nullable="false" />
+    <Property Name="GiverId" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="text" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AccountPost">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ParentAccountPostId" Type="int" />
+    <Property Name="PostedByAccountId" Type="int" Nullable="false" />
+    <Property Name="PhotoFile" Type="nvarchar" MaxLength="100" />
+    <Property Name="VideoUrl" Type="nvarchar" MaxLength="250" />
+    <Property Name="Comment" Type="text" />
+    <Property Name="PrivacyId" Type="int" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountResume">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Filename" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AccountSkill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="YearsUsed" Type="int" />
+    <Property Name="Proficiency" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountToken">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="Expired" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Token" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Action">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AssociationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Business">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="Zipcode" Type="nvarchar" MaxLength="15" />
+    <Property Name="CountryId" Type="int" />
+  </EntityType>
+  <EntityType Name="BusinessProductService">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessId" Type="int" Nullable="false" />
+    <Property Name="ProductService" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="CommMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Communication">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CommMethodId" Type="int" Nullable="false" />
+    <Property Name="ActionId" Type="int" Nullable="false" />
+    <Property Name="SenderId" Type="int" Nullable="false" />
+    <Property Name="ReceiverId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="ConversationId" Type="uniqueidentifier" />
+    <Property Name="Msg" Type="text" />
+    <Property Name="LinkId" Type="int" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Abbrev" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Interest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Network">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="IsPreferred" Type="bit" />
+  </EntityType>
+  <EntityType Name="NetworkMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NetworkId" Type="int" Nullable="false" />
+    <Property Name="MemberId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Privacy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Abbrev" Type="nvarchar" Nullable="false" MaxLength="5" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="fk_Account_Country">
+    <End Role="Country" Type="KudotreeModel.Store.Country" Multiplicity="0..1" />
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Account_State">
+    <End Role="State" Type="KudotreeModel.Store.State" Multiplicity="0..1" />
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountAssociation_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountAssociation" Type="KudotreeModel.Store.AccountAssociation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAssociation">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountAssociation_AssociationType">
+    <End Role="AssociationType" Type="KudotreeModel.Store.AssociationType" Multiplicity="1" />
+    <End Role="AccountAssociation" Type="KudotreeModel.Store.AccountAssociation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssociationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAssociation">
+        <PropertyRef Name="AssociationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountAssociation_Business">
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="1" />
+    <End Role="AccountAssociation" Type="KudotreeModel.Store.AccountAssociation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountAssociation">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountBusiness_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountBusiness" Type="KudotreeModel.Store.AccountBusiness" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountBusiness">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountBusiness_Business">
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="1" />
+    <End Role="AccountBusiness" Type="KudotreeModel.Store.AccountBusiness" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountBusiness">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountConnection_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountConnection" Type="KudotreeModel.Store.AccountConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountConnection">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountConnection_Connection">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountConnection" Type="KudotreeModel.Store.AccountConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountConnection">
+        <PropertyRef Name="ConnectionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountEducation_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountEducation" Type="KudotreeModel.Store.AccountEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountEducation">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountEducation_Business">
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="1" />
+    <End Role="AccountEducation" Type="KudotreeModel.Store.AccountEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountEducation">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountExperience_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountExperience" Type="KudotreeModel.Store.AccountExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountExperience">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountExperience_Business">
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="1" />
+    <End Role="AccountExperience" Type="KudotreeModel.Store.AccountExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountExperience">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountInterest_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountInterest" Type="KudotreeModel.Store.AccountInterest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountInterest">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountInterest_Interest">
+    <End Role="Interest" Type="KudotreeModel.Store.Interest" Multiplicity="1" />
+    <End Role="AccountInterest" Type="KudotreeModel.Store.AccountInterest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Interest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountInterest">
+        <PropertyRef Name="InterestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountKudo_Giver">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountKudo" Type="KudotreeModel.Store.AccountKudo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountKudo">
+        <PropertyRef Name="GiverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountKudo_Receiver">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountKudo" Type="KudotreeModel.Store.AccountKudo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountKudo">
+        <PropertyRef Name="ReceiverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountPost_ParentPost">
+    <End Role="AccountPost" Type="KudotreeModel.Store.AccountPost" Multiplicity="0..1" />
+    <End Role="AccountPost1" Type="KudotreeModel.Store.AccountPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountPost">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountPost1">
+        <PropertyRef Name="ParentAccountPostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountPost_PostedBy">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountPost" Type="KudotreeModel.Store.AccountPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountPost">
+        <PropertyRef Name="PostedByAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountPost_Privacy">
+    <End Role="Privacy" Type="KudotreeModel.Store.Privacy" Multiplicity="0..1" />
+    <End Role="AccountPost" Type="KudotreeModel.Store.AccountPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privacy">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountPost">
+        <PropertyRef Name="PrivacyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountResume_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountResume" Type="KudotreeModel.Store.AccountResume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountResume">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountSkill_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountSkill" Type="KudotreeModel.Store.AccountSkill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountSkill">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_AccountToken_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="AccountToken" Type="KudotreeModel.Store.AccountToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AccountToken">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Business_Country">
+    <End Role="Country" Type="KudotreeModel.Store.Country" Multiplicity="0..1" />
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="CountryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Business_State">
+    <End Role="State" Type="KudotreeModel.Store.State" Multiplicity="0..1" />
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Business">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_BusinessProductService_Business">
+    <End Role="Business" Type="KudotreeModel.Store.Business" Multiplicity="1" />
+    <End Role="BusinessProductService" Type="KudotreeModel.Store.BusinessProductService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessProductService">
+        <PropertyRef Name="BusinessId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Communication_Account_Receiver">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="Communication" Type="KudotreeModel.Store.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="ReceiverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Communication_Account_Sender">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="Communication" Type="KudotreeModel.Store.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="SenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Communication_Action">
+    <End Role="Action" Type="KudotreeModel.Store.Action" Multiplicity="1" />
+    <End Role="Communication" Type="KudotreeModel.Store.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Action">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="ActionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Communication_CommMethod">
+    <End Role="CommMethod" Type="KudotreeModel.Store.CommMethod" Multiplicity="1" />
+    <End Role="Communication" Type="KudotreeModel.Store.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="CommMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Communication_Status">
+    <End Role="Status" Type="KudotreeModel.Store.Status" Multiplicity="1" />
+    <End Role="Communication" Type="KudotreeModel.Store.Communication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Communication">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Network_Account_Owner">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="Network" Type="KudotreeModel.Store.Network" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Network">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_NetworkMember_Account">
+    <End Role="Account" Type="KudotreeModel.Store.Account" Multiplicity="1" />
+    <End Role="NetworkMember" Type="KudotreeModel.Store.NetworkMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetworkMember">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_NetworkMember_Network">
+    <End Role="Network" Type="KudotreeModel.Store.Network" Multiplicity="1" />
+    <End Role="NetworkMember" Type="KudotreeModel.Store.NetworkMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Network">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NetworkMember">
+        <PropertyRef Name="NetworkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

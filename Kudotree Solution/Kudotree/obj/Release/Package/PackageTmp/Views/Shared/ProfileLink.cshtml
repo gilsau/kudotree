@@ -1,0 +1,35 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@using Kudotree.Helpers
+@{
+    Account acct = ViewBag.AcctProfile;
+    DateTime? dateTime = ViewBag.AcctProfilePostCreated;
+    int picHt = ViewBag.PicHeight != null ? ViewBag.PicHeight : 50;
+
+    //Get DateTime offset
+    string days = string.Empty;
+    string hours = string.Empty;
+    string mins = string.Empty;
+            
+    if (dateTime != null)
+    {
+        TimeUtility.LongAgo(out days, out hours, out mins, DateTime.Parse(dateTime.ToString()));
+    }
+
+    string city = !string.IsNullOrEmpty(acct.City) ? acct.City : string.Empty;
+    string state = acct.State != null ? acct.State.Abbrev : string.Empty;
+    string cntry = acct.Country != null ? acct.Country.Abbrev : string.Empty;
+    if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+}
+
+<div style="padding:5px;">
+    <small class='pull-right'><b>@string.Format("{0} {1} {2} ago", days, hours, mins)</b></small>
+    <div style='display:inline-block;vertical-align:top;padding:5px;' data-container="body" data-toggle="profilepopover" data-placement="right" data-html="true" data-pic="@acct.ProfilePic" data-acct-id="@acct.Id" data-name="@acct.Firstname @acct.Lastname" data-job="@acct.JobTitle" data-location="@city @state @cntry"><a href='~/account/profile?id=@acct.Id'><img src='~/profilepics/@acct.ProfilePic' style='height:@string.Format("{0}px;", picHt)' /></a></div>
+    <div style='display:inline-block;vertical-align:top;padding:5px;white-space:nowrap;' data-container="body" data-toggle="profilepopover" data-placement="right" data-html="true" data-pic="@acct.ProfilePic" data-acct-id="@acct.Id" data-name="@acct.Firstname @acct.Lastname" data-job="@acct.JobTitle" data-location="@city @state @cntry">
+        <b>@acct.Firstname @acct.Lastname</b>
+        @if (!string.IsNullOrEmpty(acct.JobTitle)){
+            <br/><small><b>@acct.JobTitle</b></small>
+        }
+    </div>
+</div>
+

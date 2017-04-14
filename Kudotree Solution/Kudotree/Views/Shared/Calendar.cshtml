@@ -1,0 +1,83 @@
+﻿@using Kudotree
+@model int
+@{
+    Account acctCurrent = Session["User"] == null ? new Account() : (Account)Session["User"];
+
+    KudotreeEntities db = new KudotreeEntities();
+    
+    bool bInHeader = Model == 1;
+
+    int profileId = Request.QueryString["id"] != null ? int.Parse(Request.QueryString["id"].ToString()) : 0;
+    Account acctProfile = profileId > 0 ? db.Accounts.SingleOrDefault(a => a.Id == profileId) : acctCurrent;
+    
+    bool bOnProfilePage = Request.Url.ToString().ToLower().IndexOf("/account/profile") > -1;
+    bool bMyself = bOnProfilePage && profileId == acctCurrent.Id;
+        
+    //Set date info
+    DateTime dtMonthStart = new DateTime(ViewBag.Year, ViewBag.Month, 1);
+    string monthName = string.Format("{0:MMMM}", dtMonthStart).ToUpper();
+    int dayOfWeek = (int)dtMonthStart.DayOfWeek + 1;
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1">
+        @if (!bInHeader && !bMyself)
+        {
+            <div style="text-align:center;">@acctProfile.Firstname's Calendar</div>
+            <div style="text-align:center;font-size:10px;">Request Appointment Below</div>
+            <hr />
+        }
+        
+        <div style="text-align:center;">
+            <a class="calendarLeftArrow pull-left" data-year="@dtMonthStart.AddMonths(-1).Year" data-month="@dtMonthStart.AddMonths(-1).Month" href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            <span style="font-size:12pt;">@dtMonthStart.Year</span>
+            <a class="calendarRightArrow pull-right" data-year="@dtMonthStart.AddMonths(1).Year" data-month="@dtMonthStart.AddMonths(1).Month" href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+        <div style="text-align:center;" id="monthName">@monthName</div>
+  </div>
+  <div class="panel-body" style="padding:0px;margin:0px;">
+    <table id="tblCalendarRightPanel" class="table table-condensed table-striped table-bordered table-hover" style="margin:0px;">
+        <thead>
+            <tr>
+                <th>SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th>SAT</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int cell = 1;
+                int day = 1;
+                bool bValidDay = false;
+                int daysInMonth = DateTime.DaysInMonth(dtMonthStart.Year, dtMonthStart.Month);
+                
+                //5 weeks
+                for(int week = 1; week < 7; week++)
+                {
+                    <tr>
+                        @for (int weekday = 1; weekday < 8; weekday++)
+                        {
+                            if ( (dayOfWeek == weekday || bValidDay) && (day < daysInMonth + 1) )
+                            {
+                                <td class="calendarCell">@day</td>
+                                bValidDay = true;
+                                day++;
+                            }
+                            else{
+                                <td class="calendarCell">&nbsp;</td>
+                            }
+
+                            cell++;
+                        }
+                    </tr>
+                }
+            }
+            <tr></tr>
+        </tbody>
+    </table>
+  </div>
+</div>

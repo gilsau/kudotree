@@ -1,0 +1,9 @@
+
+*************************************************************************************************
+2014.10.18 20:34:11 ||| Not Available ||| Not Available ||| MESSAGE:The context cannot be used while the model is being created. --- INNER-EXCEPTION: --- SOURCE:EntityFramework --- STACK-TRACE:   at System.Data.Entity.Internal.LazyInternalContext.InitializeContext()
+   at System.Data.Entity.Internal.InternalContext.Initialize()
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   at System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   at Kudotree.Models.CommSvc.GetMyConversations(Boolean newMessages, Int32 howMany, Result& result) in e:\_Web Development\Equity Apps\Kudotree\Kudotree\Kudotree\Models\CommSvc.cs:line 105

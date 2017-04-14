@@ -1,0 +1,33 @@
+﻿@using Kudotree
+@model int
+
+@{
+    int rating = (int)Model;
+    int starHeight = (int)ViewBag.StarHeight;
+}
+
+<div class="text-left">
+    @{  string htmlFull = string.Empty;
+        string htmlHalf = string.Empty;
+        string htmlEmpty = string.Empty;
+                            
+        int? fullstars = rating / 10;
+        for (int fs = 0; fs < fullstars; fs++)
+        {
+            htmlFull += "<img style=\"height:" + starHeight.ToString() + "px;padding:1px;\" src=\"/images/icon_star_full_trans.png\" />";
+        }
+                                        
+        int? halfstars = (rating % 10 > 0) ? 1 : 0;
+        for (int hs = 0; hs < halfstars; hs++)
+        {
+            htmlHalf += "<img style=\"height:" + starHeight.ToString() + "px;padding:1px;\" src=\"/images/icon_star_half_trans.png\" />";
+        }
+
+        int? emptystars = 10 - (fullstars + halfstars);
+        for (int es = 0; es < emptystars; es++)
+        {
+            htmlEmpty += "<img style=\"height:" + starHeight.ToString() + "px;padding:1px;\" src=\"/images/icon_star_empty_trans.png\" />";
+        }
+    }
+    @Html.Raw(string.Format("{0}{1}{2}", htmlFull, htmlHalf, htmlEmpty))
+</div>

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="KudotreeEntities-Web.config Connection String" description="KudotreeEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Kudotree.csdl|res://*/Kudotree.ssdl|res://*/Kudotree.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=techstarapps.database.windows.net;initial catalog=kudotree;persist security info=True;user id=techstaradmin;password=Xmod350!;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Passport\ Recovered\ Files\\_Web\ Development\\Equity\ Apps\\Kudotree\\Kudotree\\Kudotree\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='KudotreeEntities']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a8f098a8cf7b4ba4946d00ea16c43f1d" Name="Diagram1">
+        <EntityTypeShape EntityType="KudotreeModel.Account" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountAssociation" Width="1.5" PointX="8.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountBusiness" Width="1.5" PointX="8.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountConnection" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountEducation" Width="1.5" PointX="11.25" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountExperience" Width="1.5" PointX="11.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountInterest" Width="1.5" PointX="5.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountKudo" Width="1.5" PointX="5.25" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountPost" Width="1.5" PointX="11.25" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountResume" Width="1.5" PointX="5.25" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountSkill" Width="1.5" PointX="5.25" PointY="48" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AccountToken" Width="1.5" PointX="5.25" PointY="51" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Action" Width="1.5" PointX="6" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.AssociationType" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Business" Width="1.5" PointX="6" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.BusinessProductService" Width="1.5" PointX="8.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.CommMethod" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Communication" Width="1.5" PointX="8.25" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Country" Width="1.5" PointX="0.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Interest" Width="1.5" PointX="3" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Network" Width="1.5" PointX="5.25" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.NetworkMember" Width="1.5" PointX="7.5" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Privacy" Width="1.5" PointX="9" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.State" Width="1.5" PointX="0.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KudotreeModel.Status" Width="1.5" PointX="6" PointY="54.75" IsExpanded="true" />
+        <AssociationConnector Association="KudotreeModel.fk_Account_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Account_State" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountAssociation_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountBusiness_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountConnection_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountConnection_Connection" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountEducation_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountExperience_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountInterest_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountKudo_Giver" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountKudo_Receiver" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountPost_PostedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountResume_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountSkill_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountToken_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Communication_Account_Receiver" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Communication_Account_Sender" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Network_Account_Owner" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_NetworkMember_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountAssociation_AssociationType" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountAssociation_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountBusiness_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountEducation_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountExperience_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountInterest_Interest" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountPost_ParentPost" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_AccountPost_Privacy" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Communication_Action" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Business_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Business_State" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_BusinessProductService_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Communication_CommMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_Communication_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="KudotreeModel.fk_NetworkMember_Network" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

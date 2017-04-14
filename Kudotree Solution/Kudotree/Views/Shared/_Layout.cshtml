@@ -1,0 +1,167 @@
+﻿@using Kudotree
+@{
+    Account acctCurrent = (Account)Session["User"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kudotree - @ViewBag.Title</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="~/Css/jquery.jqplot.min.css" rel="stylesheet" />-->
+    <link href="~/css/styles.css" rel="stylesheet" />
+    @RenderSection("Stylesheets", false)
+</head>
+<body>
+    <div class="container-fluid" style="padding:0px;margin:0px;">
+        @Html.Partial("Header")
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div id="mainContainer" class="container">
+                <div class="row-fluid">
+                    <div class="col-sm-2" id="leftPanel" style="vertical-align:top;">@Html.Partial("LeftPanel")</div>
+                    <div class="col-sm-8" id="mainPanel" style="vertical-align:top;">@RenderBody()</div>
+                    <div class="col-sm-2" id="rightPanel" style="vertical-align:top;">@Html.Partial("RightPanel")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="container-fluid" style="padding:0px;margin:0px;">
+        @Html.Partial("Footer")
+    </div>
+
+    <script src="~/scripts/jquery.min.js" ></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/global.js"></script>
+    <!--<script src="~/Scripts/jquery.jqplot.min.js"></script>
+    <script src="~/Scripts/jqplot.pieRenderer.min.js"></script>
+    <script src="~/Scripts/diversityPieChart.js"></script>-->
+    <script src="~/Scripts/calendar.js"></script>
+    <script src="~/Scripts/profilePopover.js"></script>
+    @RenderSection("Scripts", false)
+
+    <!-- Send Message modal -->
+    <form id="frmMsg" method="post">
+        <div id="msgModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="form-horizontal">
+                        <div class="modal-header">
+                            <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h4>Send Message to <span id="msg-person-name"></span></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row-fluid">
+                                    <label for="MessageTo" class="col-md-2 control-label">Message</label>
+                                    <div class="col-md-10">
+                                        <textarea class="form-control" id="MessageTo" name="MessageTo" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btnSendMsg btn btn-primary pull-right">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="MessageToAcctId" name="MessageToAcctId" />
+    </form>
+
+    <!-- Give Kudos modal -->
+    <form id="frmKudo" method="post">
+        <div id="kudoModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="form-horizontal">
+                        <div class="modal-header">
+                            <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                            <h4>Give Kudos to <span id="kudoNameLabel"></span></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="KudoComment" class="col-lg-2 control-label">Comment</label>
+                                <div class="col-lg-10">
+                                    <textarea class="form-control" id="KudoComment" name="KudoComment" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnSendKudo" type="submit" class="addalbumbtn btn btn-primary pull-right">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="KudoToAcctId" name="KudoToAcctId" />
+    </form>
+
+    <!-- Generic dialog box w/message & OK button -->
+    <div class="modal fade" id="modalOk" tabindex="-1" role="dialog" aria-labelledby="modalOkTitle" aria-hidden="true">
+        <div class="modal-dialog modal-info">
+        <div class="modal-content">
+            <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+            <div id="modalOkTitle" class="modal-header">Kudotree</div>
+            <div class="modal-body">
+                <div class="center-block" id="okMsg" style="text-align:center;"></div>
+            </div>
+            <div class="modal-footer">
+            <button id="btnOK" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Generic dialog box w/message & OK/CANCEL buttons -->
+    <div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="modalOkTitle" aria-hidden="true">
+        <div class="modal-dialog modal-info">
+        <div class="modal-content">
+            <span class="glyphicon glyphicon-remove pull-right btn btn-sm btn-default" style="margin:10px;" data-dismiss="modal"></span>
+            <div id="modalConfirmTitle" class="modal-header">Kudotree</div>
+            <div class="modal-body">
+                <div class="center-block" id="modalConfirmOkMsg" style="text-align:center;"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnConfirmOK" class="btn btn-default">OK</button>
+                <button id="btnConfirmCancel" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Add To Preferred Network modal -->
+    <div id="prefModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="form-horizontal">
+                    <div class="modal-header">
+                        <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4>Add <span id="spanAddToPrefNetworkTitle" style="color:#000;"></span> To A Preferred Network</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row-fluid">
+                                <div class="col-md-6">
+                                    @foreach (Network prefnet in acctCurrent.Networks.Where(pn => pn.IsPreferred == true))
+                                    {
+                                        <div><input type="checkbox" name="ArrPrefNets" value="@prefnet.Id" />&nbsp;@prefnet.Name&nbsp;<span class="glyphicon glyphicon-star"></span></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnAddToPrefNetSave" class="btn btn-primary pull-right">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

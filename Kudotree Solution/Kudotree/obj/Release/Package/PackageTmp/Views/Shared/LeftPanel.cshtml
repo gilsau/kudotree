@@ -1,0 +1,78 @@
+﻿@using Kudotree
+@{
+    Account acctCurrent = Session["User"] == null ? new Account() : (Account)Session["User"];
+
+    string city = !string.IsNullOrEmpty(acctCurrent.City) ? acctCurrent.City : string.Empty;
+    string state = acctCurrent.State != null ? acctCurrent.State.Abbrev : string.Empty;
+    string cntry = acctCurrent.Country != null ? acctCurrent.Country.Abbrev : string.Empty;
+    if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)){ city = city + ", "; }
+}
+
+<div style="width:100%;margin:0px auto 0px auto;text-align:center;font-size:18px;">
+    <a href="~/account/profile"><img src="~/profilepics/@acctCurrent.ProfilePic" style="max-width:100px;max-height:100px;width:auto;height:auto;" class="roundImg"  data-container="body" data-toggle="profilepopover" data-placement="right" data-html="true" data-pic="@acctCurrent.ProfilePic" data-acct-id="@acctCurrent.Id" data-name="@acctCurrent.Firstname @acctCurrent.Lastname" data-job="@acctCurrent.JobTitle" data-location="@city @state @cntry" /></a>
+    <div style="font-size:14px;font-weight:bold;">@acctCurrent.Firstname @acctCurrent.Lastname</div>
+    <div style="font-size:12px;">@acctCurrent.JobTitle</div>
+    <div style="font-size:12px;">@city @state @cntry</div>
+</div>
+
+@if (Request.Url.ToString().ToLower().IndexOf("/kudotree/manage") > -1)
+{
+    <p>&nbsp;</p>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1" style="margin:0px;">
+            <a href="#modalAddNetwork" data-toggle="modal" class="pull-right"><span class="glyphicon glyphicon-plus" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add Network"></span></a>
+            MY NETWORKS
+        </div>
+        
+        @if(acctCurrent != null){
+            if (acctCurrent.Networks.Count() == 0)
+            {
+                <div style="width:30%;margin:10px auto 10px auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+            }
+
+            foreach (Network net in acctCurrent.Networks)
+            {
+                <div class="divHover" style="font-size:10px;padding:0px;border-top:solid 1px #eee;">
+                    <a class="ktRemNet btn btn-sm pull-right" data-id="@net.Id" data-msg="@net.Name" style="padding:5px 1px 5px 1px;margin:0px;"><span style="color:#d5d5d5;" class="glyphicon glyphicon-remove"></span></a>
+                    <a href="#modalEditNetwork" data-toggle="modal" data-id-to-update="@net.Id" data-name="@net.Name" data-ispreferred="@net.IsPreferred" class="ktEditNet btn btn-sm" style="padding:5px 1px 5px 1px;margin:0px;"><span style="color:#d5d5d5;" class="glyphicon glyphicon-pencil"></span></a>
+                    @net.Name&nbsp;@if (bool.Parse(net.IsPreferred.ToString())){ <span class="glyphicon glyphicon-star"></span> } (@net.NetworkMembers.Count())
+                </div>
+            }
+        }
+    </div>
+}
+
+<p>&nbsp;</p>
+<div class="panel panel-default">
+  <div class="panel-heading panel-head1">WHO'S VIEWED YOU</div>
+  <div class="panel-body" style="padding:5px;">
+    <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+  </div>
+</div>
+
+@if (Request.Url.ToString().ToLower().IndexOf("/kudotree") == -1)
+{
+    <p></p>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-head1">WHO YOU VIEWED</div>
+      <div class="panel-body" style="padding:5px;">
+        <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+      </div>
+    </div>
+
+    <p></p>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-head1">SUGGESTED CONNECTIONS</div>
+      <div class="panel-body" style="padding:5px;">
+        <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+      </div>
+    </div>
+}
+
+<p></p>
+<div class="panel panel-default">
+  <div class="panel-body" style="height:150px;">
+    AD GOES HERE
+  </div>
+</div>
+

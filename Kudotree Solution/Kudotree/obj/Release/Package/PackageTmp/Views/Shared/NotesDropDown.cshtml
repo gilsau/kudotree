@@ -1,0 +1,47 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@model IEnumerable<Communication>
+
+@{
+    IEnumerable<Communication> notes = (IEnumerable<Communication>)Model;
+    Account acctCurrent = (Account)Session["User"];
+    
+    if(acctCurrent != null)
+    {
+        //Notifications
+        int noteCounter = 0;
+        foreach (Communication note in notes)
+        {
+            //Only show 10 in drop down
+            noteCounter++;
+            if(noteCounter > 10){
+                break;
+            }
+            
+            string msgPrev = string.Empty;
+            if(!string.IsNullOrEmpty(note.Msg)){
+                msgPrev = note.Msg.Length > 30 ? string.Format("{0}...", note.Msg.Substring(0, 30)) : note.Msg;
+            }
+
+            string urlPos = "/messages/notifications";
+            if(note.ActionId == (int)ActionType.Commented){
+                urlPos = string.Format("/home?seen=1&listby=-1&replyid={0}#pos-{0}", note.LinkId);
+            }
+            
+            <li style="margin:0px;padding:0px;">
+                <a style="margin:0px;padding:5px;" href="@urlPos">
+                    <div class="row">
+                        <div class="col-sm-3"><img class="circularProfilePic2" src="~/profilepics/@note.Account1.ProfilePic" style="width:25px;height:25px;margin:2px 0px 2px 5px;" /></div>
+                        <div class="col-sm-9">
+                            <div><small><b>@string.Format("{0} {1}", note.Account1.Firstname, note.Account1.Lastname)</b></small></div>
+                            <div style="color:#74ba00;"><small><b>@string.Format("{0}{1}", note.Action.Name.First().ToString().ToUpper(), note.Action.Name.Substring(1).ToLower())</b></small></div>
+                            <div class="text-info"><small style="font-size:x-small;white-space:normal;">@msgPrev</small></div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li style="margin:0px;padding:0px;" class="divider"></li>
+        }
+        <li style="text-align:center;"><a style="margin:0px;padding:5px;" href="~/messages/notifications">See All Notifications</a></li>
+    }
+}

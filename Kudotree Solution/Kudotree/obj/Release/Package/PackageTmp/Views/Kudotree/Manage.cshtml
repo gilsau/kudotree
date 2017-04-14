@@ -1,0 +1,221 @@
+﻿@using Kudotree
+@model IEnumerable<Account>
+@{
+    ViewBag.Title = "My Kudotree";
+
+    Account acctCurrent = (Account)Session["User"];
+    
+    IEnumerable<Account> conns = Model != null ? Model : new List<Account>();
+    
+    int listBy = Request.QueryString["listby"] != null ? int.Parse(Request.QueryString["listby"].ToString()) : 0;
+    string sortBy = Request.QueryString["sortby"] != null ? Request.QueryString["sortby"].ToString() : "Firstname";
+    string keyword = Request.QueryString["keyword"] != null ? Request.QueryString["keyword"].ToString() : string.Empty;
+    string sortDirection = Request.QueryString["sortDirection"] != null ? Request.QueryString["sortDirection"].ToString() : "asc";
+}
+
+@section Scripts{
+    <script src="~/scripts/kudotree.js" type="text/javascript"></script>
+}
+
+<form id="frmKudotree" method="get">
+    <div class="panel panel-default" style="margin:20px;">
+        <div class="panel-body" style="padding:10px;">
+            <div class="row-fluid">
+                <div class="col-md-6"><input class="form-control" type="text" name="Keyword" placeholder="search your connections..." value="@keyword" /></div>
+                <div class="col-md-5">
+                    <select id="ktNetwork" name="NetworkIdToSearchOn" class="form-control">
+                        <option value="0">All Networks</option>
+                        @if (acctCurrent != null)
+                        {
+                            foreach (Network net in acctCurrent.Networks)
+                            {
+                                <option value="@net.Id">@net.Name @if (net.IsPreferred == true) { <text>*</text> }</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-1"><button type="submit" id="ktSearch" class="btn btn-md btn-default"><span class="glyphicon glyphicon-search"></span></button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divLoading" class="collapse" style="text-align:center;">
+        <h5>updating results... please stand by...</h5>
+        <img class="center-block" src="~/images/loading_animated.gif" style="height:50px;" />
+    </div>
+
+    <div class="panel panel-default" style="margin:20px;">
+        <div class="panel-heading" style="padding:0px;">
+            <div class="panel-footer form-inline">
+                <label for="ktViewBy">View:</label>
+                <select id="ktListBy" name="listby" class="form-control">
+                    <option value="0">Thumbnails</option>
+                    <option value="1" @if(listBy == 1){<text>selected="selected"</text>}>List</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="ktSortBy">Sort By:</label>
+                <select id="ktSortBy" name="SortBy" class="form-control">
+                    <option value="Firstname" @if(sortBy == "Firstname"){<text>selected="selected"</text>}>First Name</option>
+                    <option value="Lastname" @if(sortBy == "Lastname"){<text>selected="selected"</text>}>Last Name</option>
+                    <option value="JobTitle" @if(sortBy == "JobTitle"){<text>selected="selected"</text>}>Job Title</option>
+                    <option value="City" @if(sortBy == "City"){<text>selected="selected"</text>}>City</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm @if(sortDirection == "asc"){<text>btn-info</text>}else{<text>btn-default</text>}" id="lnkOrderByAsc" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Ascending"><span class="glyphicon glyphicon-chevron-down"></span></a>
+                <a class="btn btn-sm @if (sortDirection == "desc"){<text>btn-info</text>}else{<text>btn-default</text>}" id="lnkOrderByDesc" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Descending"><span class="glyphicon glyphicon-chevron-up"></span></a>
+            </div>
+        </div>
+        <div class="panel-body" style="padding:10px;">
+        @if(conns.Count() > 0)
+        {
+            foreach (Account conn in conns)
+            {
+                string city = !string.IsNullOrEmpty(conn.City) ? conn.City : string.Empty;
+                string state = conn.State != null ? conn.State.Abbrev : string.Empty;
+                string cntry = conn.Country != null ? conn.Country.Abbrev : string.Empty;
+                if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+            
+                if(listBy == 0){
+                    <div class="panel panel-info" style="width:200px;display:inline-block;margin:12px;">
+                        <div class="panel-heading">
+                            <div style="text-align:center;"><a href="~/account/profile?id=@conn.Id"><b>@string.Format("{0} {1}", conn.Firstname, conn.Lastname)</b></a></div>
+                        </div>
+                        <div class="panel-body" style="padding:5px;min-height:170px;">
+                            <div class="center-block" style="width:100px;vertical-align:top;"><a href="~/account/profile?id=@conn.Id"><img src="~/profilepics/@conn.ProfilePic" style="width:auto;height:auto;max-width:100px;max-height:100px;vertical-align:top;" class="center-block" /></a></div>
+                            <div style="font-size:12px;text-align:center;">@conn.JobTitle</div>
+                            <div style="font-size:12px;text-align:center;">@city @state @cntry</div>
+                        </div>
+                        <div class="panel-footer" style="text-align:center;padding:0px;">
+                            <a data-to-id="@conn.Id" data-to-name="@string.Format("{0} {1}", conn.Firstname, conn.Lastname)" class="btnMsg btn btn-sm" href="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Send Message"></span></a>
+                            <a href="#kudoModal" data-id="@conn.Id" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnKudos btn btn-sm"><span class="glyphicon glyphicon-leaf" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Give Kudos"></span></a>
+                            <a href="#prefModal" data-id="@conn.Id" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnAddToPrefNet btn btn-sm"><span class="glyphicon glyphicon-star" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add to Preferred Networks"></span></a>
+                            <a href="#networksModal" data-id="@conn.Id" data-networks="@Json.Encode(conn.NetworkMembers.Select(nm => nm.NetworkId).ToList())" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnAddToNet btn btn-sm"><span data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add to Networks"><img src="~/images/icon_family_friends_blue.png" style="height:17px;" /></span></a>
+                            <a class="btnRemoveConn btn btn-sm" data-id="@conn.Id" data-msg="@string.Format("{0} {1}", conn.Firstname, conn.Lastname)" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Remove Connection"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                    </div>
+                }
+                else{
+                    <div class="row divHover" style="border-bottom:solid 1px #eee;">
+                        <div class="col-md-2">
+                            <a href="~/account/profile?id=@conn.Id"><img src="~/profilepics/@conn.ProfilePic" style="width:100%;max-height:100px;" /></a>
+                        </div>
+                        <div class="col-md-6">
+                            <div><b>@string.Format("{0} {1}", conn.Firstname, conn.Lastname)</b></div>
+                            <div>@conn.JobTitle</div>
+                            <div>@city @state @cntry</div>
+                        </div>
+                        <div class="pull-right">
+                            <a data-to-id="@conn.Id" data-to-name="@string.Format("{0} {1}", conn.Firstname, conn.Lastname)" class="btnMsg btn btn-sm" href="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Send Message"></span></a>
+                            <a href="#kudoModal" data-id="@conn.Id" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnKudos btn btn-sm"><span class="glyphicon glyphicon-leaf" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Give Kudos"></span></a>
+                            <a href="#prefModal" data-id="@conn.Id" data-networks="@Json.Encode(conn.NetworkMembers.Select(nm => nm.NetworkId).ToList())" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnAddToPrefNet btn btn-sm"><span class="glyphicon glyphicon-star" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add to Preferred Networks"></span></a>
+                            <a href="#networksModal" data-id="@conn.Id" data-networks="@Json.Encode(conn.NetworkMembers.Select(nm => nm.NetworkId).ToList())" data-toggle="modal" data-name="@conn.Firstname @conn.Lastname" class="btnAddToNet btn btn-sm"><span data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add to Networks"><img src="~/images/icon_family_friends_blue.png" style="height:17px;" /></span></a>
+                            <a class="btnRemoveConn btn btn-sm" data-id="@conn.Id" data-msg="@string.Format("{0} {1}", conn.Firstname, conn.Lastname)" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Remove Connection"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                    </div>
+                }
+            }
+        }
+        else{
+            <div style="text-align:center;"><h4 style="color:#808080;">No connections were found.</h4></div>
+        }
+    </div>
+    </div>
+
+    <!-- Add To Regular Network -->
+    <div id="networksModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="form-horizontal">
+                    <div class="modal-header">
+                        <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4>Add <span id="spanAddToNetworkTitle" style="color:#000;"></span> To A Network</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row-fluid">
+                                <div class="col-md-6">
+                                    @foreach (Network net in acctCurrent.Networks.Where(pn => pn.IsPreferred == false))
+                                    {
+                                        <div><input type="checkbox" name="ArrRegNets" value="@net.Id" />&nbsp;@net.Name</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btnSubmitForm btn btn-primary pull-right">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Create Network modal -->
+    <div id="modalAddNetwork" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="form-horizontal">
+                    <div class="modal-header">
+                        <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4>Create A New Network</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row-fluid">
+                                <div class="col-md-3" style="text-align:right;"><b>Name</b></div>
+                                <div class="col-md-9"><input class="form-control" id="ktNetworkName" name="NetworkName" /></div>
+                            </div>
+                            <br /><br />
+                            <div class="row-fluid">
+                                <div class="col-md-3">&nbsp;</div>
+                                <div class="col-md-9"><input type="checkbox" name="IsPreferredNetwork" value="1" /> Is this a <span class="glyphicon glyphicon-star"></span> Preffered Network?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btnSubmitForm btn btn-primary pull-right">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Network modal -->
+    <div id="modalEditNetwork" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="form-horizontal">
+                    <div class="modal-header">
+                        <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                        <h4>Edit Network</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="row-fluid">
+                                <div class="col-md-3" style="text-align:right;"><b>Name</b></div>
+                                <div class="col-md-9"><input class="form-control" id="ktNetworkNameEdit" name="NetworkNameEdit" /></div>
+                            </div>
+                            <br /><br />
+                            <div class="row-fluid">
+                                <div class="col-md-3">&nbsp;</div>
+                                <div class="col-md-9"><input type="checkbox" id="ktIsPreferredNetworkEdit" name="IsPreferredNetworkEdit" value="1" /> Is this a <span class="glyphicon glyphicon-star"></span> Preffered Network?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btnSubmitForm btn btn-primary pull-right">Save Changes</button>
+                    </div>
+
+                    <input type="hidden" id="ktNetIdToUpdate" name="NetworkIdToUpdate" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="ktSortDirection" name="SortDirection" value="@sortDirection" />
+    <input type="hidden" id="ktIdForRegNets" name="ConnIdToAddToNet" />
+    <input type="hidden" id="ktIdForPrefNets" name="ConnIdToAddToPrefNet" />
+    <input type="hidden" id="ktIdToRemove" name="ConnIdToRemove" />
+    <input type="hidden" id="ktNetworkIdToRemove" name="NetworkIdToRemove" />
+</form>

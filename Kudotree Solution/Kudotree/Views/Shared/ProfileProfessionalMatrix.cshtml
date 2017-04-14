@@ -1,0 +1,724 @@
+﻿@using Kudotree
+@model Account
+@{ 
+    Account acctCurrent = (Account)Session["User"];
+    Account acctProfile = (Account)Model;
+
+    bool bEdit = Request.QueryString["edit"] != null;
+    
+    string panel = Request.QueryString["panel"] != null ? Request.QueryString["panel"].ToString() : string.Empty;
+    string msg = ViewBag.Msg != null ? ViewBag.Msg : string.Empty;
+}
+
+<a id="profobj" name="profobj"></a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1" style="text-align:left;">
+        @if(bEdit){ <a href="#modalProfObj" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a> }
+        <span id="msgFrmProfObj" class="alert alert-info pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+        Professional Objective
+    </div>
+    <div style="padding:10px;">
+        @if(!string.IsNullOrEmpty(acctProfile.JobTitle) || !string.IsNullOrEmpty(acctProfile.Summary)){
+            <div style="white-space:pre-wrap;"><b>@acctProfile.JobTitle</b></div>
+            
+            <p>&nbsp;</p>
+            <div style="white-space:pre-wrap;">@acctProfile.Summary</div>
+        }
+        else{
+            <div style="width:50px;margin:auto;">
+                <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+            </div>
+        }
+    </div>
+</div>
+
+<a id="resume" name="resume"></a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1" style="text-align:left;">
+        @if(bEdit){ <a href="#modalResume" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a> }
+        <span id="msgFrmResume" class="alert alert-info pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+        Resume
+    </div>
+    <div style="padding:10px;">
+        @if(!string.IsNullOrEmpty(acctProfile.ResumeFile)){
+            <a target="_blank" href="~/resumes/@acctProfile.ResumeFile">Click here to view resume</a>
+        }
+        else{
+            <div style="width:50px;margin:auto;">
+                <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+            </div>
+        }
+    </div>
+</div>
+
+<a id="skills" name="skills"></a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1" style="text-align:left;">
+        @if(bEdit){ <a href="#modalSkills" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a> }
+        <span id="msgFrmSkills" class="alert alert-info pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+        Skills / Interests
+    </div>
+    <div style="padding:10px;">
+        @if(acctProfile.AccountSkills.Count() > 0){
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-left">Skill/Interest</th>
+                        <th class="text-center">Proficiency</th>
+                        <th class="text-center">Years Used</th>
+                        @if(bEdit){ <th class="text-center">Remove</th> }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(AccountSkill skill in acctProfile.AccountSkills){
+                    <tr>
+                        <td class="text-left">@skill.Name</td>
+                        <td class="text-center">@skill.Proficiency</td>
+                        <td class="text-center">@skill.YearsUsed</td>
+                        @if(bEdit){ <td class="text-center" style="vertical-align:top;"><a href="profile?id=@acctProfile.Id&skid=@skill.Id&edit=1&a=skills" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span></a></td> }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else{
+            <div style="width:50px;margin:auto;">
+                <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+            </div>
+        }
+    </div>
+</div>
+
+@{
+var jobSeekerText = acctProfile.JobSeeker == true ? string.Empty : " NOT ";
+var jobSeekerHelpText = acctProfile.JobSeekerKudoHelp == true ? string.Empty : " NOT ";
+}
+
+@if(bEdit){
+<a id="jobseeker" name="jobseeker"></a>
+<form id="frmJobSeeker" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=JobSeeker#jobseeker">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1" style="text-align:left;">
+            <div><a class="pull-right" data-toggle="collapse" data-target="#editRoleJobSeeker, #viewRoleJobSeeker"><span class="glyphicon glyphicon-pencil"></span></a></div>
+            Job Seeker
+        </div>
+        <div id="editRoleJobSeeker" class="collapse @if(panel == "JobSeeker"){ <text>in</text> } panel-body form-inline">
+            <div class="row-fluid">
+                <input id="chkRoleJobSeeker" type="checkbox" name="JobSeeker" value="true" @( acctProfile.JobSeeker == true ? "checked='checked'" : "" ) />&nbsp;Are you a Job Seeker?
+
+                <div><input type="checkbox" id="chkJobSeekerKudoHelp" name="JobSeekerKudoHelp" value="true" @( acctProfile.JobSeekerKudoHelp == true ? "checked='checked'" : "" ) />&nbsp;Would you like Kudotree to help you find work?</div>
+                
+                <hr />
+                <div>
+                    <button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Job Seeker Info" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button>
+                    <span id="alertFrmJobSeeker" class="alert alert-warning" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmJobSeeker" class="loading" src="~/images/loading.gif" />
+                    <span id="msgFrmJobSeeker" class="alert alert-info" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+                </div>
+            </div>
+        </div>
+        <div id="viewRoleJobSeeker" class="collapse @if(panel != "JobSeeker"){ <text>in</text> } panel-body">
+            You ARE @jobSeekerText a job seeker.
+            <hr />
+            You DO @jobSeekerHelpText want help from Kudotree, to find work.
+        </div>
+    </div>
+    <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+    <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+    <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+    <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+</form>
+}
+
+<a id="experience" name="experience"></a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1" style="text-align:left;">
+        @if(bEdit){ <a href="#modalExperience" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a> }
+        <span id="msgFrmExperience" class="alert alert-info pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+        Work Experience
+    </div>
+    <div style="padding:10px;">
+        @if(acctProfile.AccountExperiences.Count() > 0){
+            <table class="table table-striped" style="font-size:12px;">
+                <tbody>
+                    @foreach(AccountExperience job in acctProfile.AccountExperiences.OrderByDescending(ae => ae.DateTo))
+                    {
+                        string city = !string.IsNullOrEmpty(job.Business.City) ? job.Business.City : string.Empty;
+                        string state = job.Business.State != null ? job.Business.State.Abbrev : string.Empty;
+                        string country = job.Business.Country != null ? job.Business.Country.Abbrev : string.Empty;
+            
+                        <tr>
+                            <td class="text-left">
+                                <table style="background-color:transparent;width:100%;">
+                                    <tr>
+                                        <td class="text-left" style="width:30%;">
+                                            <div><b>@job.Business.Name</b></div>
+                                            @if(job.Business.Address1 != null){ <div>@job.Business.Address1</div> }
+                                            @if(job.Business.Address2 != null){ <div>@job.Business.Address2</div> }
+                                            <div>@string.Format("{0} {1} {2}", city, state, country)</div>
+                                        </td>
+                                        <td class="text-left" style="width:30%;vertical-align:top;"><b>@job.JobTitle</b></td>
+                                        <td class="text-left" style="width:20%;vertical-align:top;">
+                                            <div><b>From</b></div>
+                                            @string.Format("{0:MM/dd/yyyy}", job.DateFrom)
+                                        </td>
+                                        <td class="text-left" style="width:20%;vertical-align:top;">
+                                            <div><b>To</b></div>
+                                            @string.Format("{0:MM/dd/yyyy}", job.DateTo)
+                                        </td>
+
+                                        @if(bEdit){ 
+                                            <td class="text-center" style="vertical-align:top;"><a href="profile?id=@acctProfile.Id&jid=@job.Id&edit=1&a=experience" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                        }
+                                    </tr>
+                                    @if(!string.IsNullOrEmpty(job.Description)){
+                                    <tr><td colspan="4"><hr /></td></tr>
+                                    <tr>
+                                        <td colspan="4" style="white-space:pre-wrap;">@job.Description</td>
+                                    </tr>
+                                    }
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else{
+            <div style="width:50px;margin:auto;">
+                <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+            </div>
+        }
+    </div>
+</div>
+
+@{  var studentText = acctProfile.Student == true ? string.Empty : " NOT ";
+    var studentHelpText = acctProfile.StudentKudoHelp == true ? string.Empty : " NOT ";
+}
+
+@if(bEdit){
+<a id="student" name="student"></a>
+<form id="frmStudent" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=Student#student">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1" style="text-align:left;">
+            <div><a class="pull-right" data-toggle="collapse" data-target="#editRoleStudent, #viewRoleStudent"><span class="glyphicon glyphicon-pencil"></span></a></div>
+            Student
+        </div>
+        <div id="editRoleStudent" class="collapse @if(panel == "Student"){ <text>in</text> } panel-body form-inline">
+            <div class="row-fluid">
+                <div><input id="chkRoleStudent" type="checkbox" name="Student" value="true" @( acctProfile.Student == true ? "checked='checked'" : "" ) />&nbsp;Are you a Student?</div>
+                <div><input type="checkbox" id="chkStudentKudoHelp" name="StudentKudoHelp" value="true" @( acctProfile.StudentKudoHelp == true ? "checked='checked'" : "" ) />&nbsp;Would you like help from Kudotree finding work or an internship?</div>
+                
+                <hr />
+                <div>
+                    <button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Student Info" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button>
+                    <span id="alertFrmStudent" class="alert alert-warning" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmStudent" class="loading" src="~/images/loading.gif" />
+                    <span id="msgFrmStudent" class="alert alert-info" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+                </div>
+            </div>
+        </div>
+        <div id="viewRoleStudent" class="collapse @if(panel != "Student"){ <text>in</text> } panel-body">
+            You ARE @studentText a student.
+            <hr />
+            You DO @studentHelpText want help from Kudotree, to find work and internships.
+        </div>
+    </div>
+    <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+    <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+    <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+    <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+</form>
+}
+
+<a id="education" name="education"></a>
+<div class="panel panel-default">
+    <div class="panel-heading panel-head1" style="text-align:left;">
+        @if(bEdit){ <a href="#modalEducation" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a> }
+        Education
+    </div>
+    <div style="padding:10px;">
+        @if(acctProfile.AccountEducations.Count() > 0){
+            <table class="table table-striped">
+                <tbody>
+                    @foreach(AccountEducation school in acctProfile.AccountEducations)
+                    {
+                        string city = !string.IsNullOrEmpty(school.Business.City) ? school.Business.City : string.Empty;
+                        string state = school.Business.State != null ? school.Business.State.Abbrev : string.Empty;
+                        string country = school.Business.Country != null ? school.Business.Country.Abbrev : string.Empty;
+            
+                        <tr>
+                            <td class="text-left">
+                                <div><b>@school.Business.Name</b></div>
+                                @if(school.Business.Address1 != null){ <div>@school.Business.Address1</div> }
+                                @if(school.Business.Address2 != null){ <div>@school.Business.Address2</div> }
+                                <div>@string.Format("{0} {1} {2}", city, state, country)</div>
+                            </td>
+                            <td class="text-left" style="vertical-align:top;">
+                                <div><b>From</b></div>
+                                @string.Format("{0:MM/dd/yyyy}", school.YearAttendedFrom)
+                            </td>
+                            <td class="text-left" style="vertical-align:top;">
+                                <div><b>To</b></div>
+                                @string.Format("{0:MM/dd/yyyy}", school.YearAttendedTo)
+                            </td>
+                            <td class="text-left" style="vertical-align:top;">
+                                <div><b>Certification</b></div>
+                                @school.Certification
+                            </td>
+                            @if(bEdit){ 
+                                <td class="text-center" style="vertical-align:top;"><a href="profile?id=@acctProfile.Id&sid=@school.Id&edit=1&a=education" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span></a></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else{
+            <div style="width:50px;margin:auto;">
+                <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+            </div>
+        }
+    </div>
+</div>
+
+@{
+var businessText = acctProfile.BusinessOwner == true ? string.Empty : " NOT ";
+var businessHelpText = acctProfile.BusinessOwnerKudoHelp == true ? string.Empty : " NOT ";
+}
+
+@if(bEdit){
+<a id="business" name="business"></a>
+<form id="frmBusiness" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=Business#business">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1" style="text-align:left;">
+            <div><a class="pull-right" data-toggle="collapse" data-target="#editRoleBusiness, #viewRoleBusiness"><span class="glyphicon glyphicon-pencil"></span></a></div>
+            Business Owner or Rep
+        </div>
+        <div id="editRoleBusiness" class="collapse @if(panel == "Business"){ <text>in</text> } panel-body form-inline">
+            <div class="row-fluid">
+                <input id="chkRoleBus" type="checkbox" name="BusinessOwner" value="true" @( acctProfile.BusinessOwner == true ? "checked='checked'" : "" ) />&nbsp;Are you a Business Owner or Representative?
+
+                <div><input type="checkbox" id="chkBusinessOwnerKudoHelp" name="BusinessOwnerKudoHelp" value="true" @( acctProfile.BusinessOwnerKudoHelp == true ? "checked='checked'" : "" ) />&nbsp;Would you like help finding and identifying your customer base?</div>
+                <div style="font-weight:bold;">Your type of services or products offered will help us determine what clientele demographic you may be looking for.</div>
+                
+                <hr />
+                <div>
+                    <button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Business Info" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button>
+                    <span id="alertFrmBusiness" class="alert alert-warning" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmBusiness" class="loading" src="~/images/loading.gif" />
+                    <span id="msgFrmBusiness" class="alert alert-info" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+                </div>
+            </div>
+        </div>
+        <div id="viewRoleBusiness" class="collapse @if(panel != "Business"){ <text>in</text> } panel-body">
+            You ARE @businessText a business owner.
+            <hr />
+            You DO @businessHelpText want help from Kudotree, to find customers.
+        </div>
+    </div>
+    <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+    <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+    <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+    <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+</form>
+}
+
+<a id="businesslist" name="businesslist"></a>
+@if(acctProfile.BusinessOwner == true){
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1" style="text-align:left;">
+            @if(bEdit){ <a href="#modalBusinessList" class="pull-right" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a> }
+            @acctProfile.Firstname's Business Locations
+        </div>
+        <div style="padding:10px;">
+            @if(acctProfile.AccountBusinesses.Count() > 0){
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Business</th>
+                        <th>Products / Services</th>
+                        @if (bEdit) { <th class="text-center">Action</th> }
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (AccountBusiness abus in acctProfile.AccountBusinesses)
+                {
+                    <tr>
+                        <td class="text-left">
+                            <div><b>@abus.Business.Name</b></div>
+                            <div>@abus.Business.Address1</div>
+                            <div>@abus.Business.Address2</div>
+                            <div>@abus.Business.City, @abus.Business.State.Abbrev @abus.Business.Country.Abbrev</div>
+                        </td>
+                        <td class="text-left">
+                            @{  foreach (BusinessProductService bps in abus.Business.BusinessProductServices)
+                                {
+                                    <button type="button" class="btn btn-sm btn-default">@bps.ProductService</button>
+                                }
+                            }
+                        </td>
+                        @if(bEdit){ 
+                            <td class="text-center" style="vertical-align:top;">
+                                <a href="#modalBusinessList" data-container="body" data-toggle="modal" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="profile?id=@acctProfile.Id&bid=@abus.Id&edit=1&a=businesslist" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td> 
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+            }
+            else{
+                <div style="width:50px;margin:auto;">
+                    <img src="~/images/icon_noresults.jpg" style="width:100%;" />
+                </div>
+            }
+        </div>
+    </div>
+}
+
+<!-- Modal for Professional Objective -->
+<div id="modalProfObj" class="modal fade" role="dialog">
+    <form id="frmProfObj" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=ProfObj#profobj">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Professional Objective</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <div><label for="JobTitle">Profession / Job Title / Specialty</label></div>
+                                <div><input class="form-control" type="text" id="JobTitle" name="JobTitle" placeholder="job title / specialty" value="@acctProfile.JobTitle" /></div>
+    
+                                <p>&nbsp;</p>
+                                <div><label for="ProfessionalSummary">Professional Summary</label></div>
+                                <div><textarea class="form-control" id="Summary" name="Summary" rows="5">@acctProfile.Summary</textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Professional Info" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button></div>
+                    <span id="alertFrmProfObj" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmProfObj" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>
+
+<!-- Modal for Resume -->
+<div id="modalResume" class="modal fade" role="dialog">
+    <form id="frmResume" method="post" enctype="multipart/form-data" action="profile?id=@acctProfile.Id&edit=1&panel=Resume#resume">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Resume</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <h4>Resume must be in PDF format.<br />
+                                <br />
+                                <b>TIP:</b> If resume is in MS WORD format, you can save your file as PDF in MS WORD (File > Save As > PDF).
+                                </h4>
+
+                                <p>&nbsp;</p>
+                                <div><a id="resume-file-icon" style="margin-left:10px;" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Update Resume File" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-file"></span></a>&nbsp;Update Resume on File</div>
+    
+                                <p>&nbsp;</p>
+                                <small id="resume-filename"></small>
+                                <input type="file" id="ResumeFile" name="ResumeFile" style="visibility:hidden;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Resume" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button></div>
+                    <span id="alertFrmResume" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmResume" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>
+
+<!-- Modal for Skills -->
+<div id="modalSkills" class="modal fade" role="dialog">
+    <form id="frmSkills" method="post" enctype="multipart/form-data" action="profile?id=@acctProfile.Id&edit=1&panel=Skills#skills">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Add Skill / Interest</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-inline">
+                        <label for="SkillName">Skill/Interest</label>
+                        <input class="form-control" type="text" id="SkillName" name="SkillName" style="width:100px;" placeholder="skill" />
+                        &nbsp;&nbsp;&nbsp;
+                        <label for="SkillProficiency">Proficiency</label>
+                        <input class="form-control" type="text" id="SkillProficiency" name="SkillProficiency" style="width:75px;" placeholder="1 - 10" />
+                        &nbsp;&nbsp;&nbsp;
+                        <label for="SkillYearsUsed">Years Used</label>
+                        <input class="form-control" type="text" id="SkillYearsUsed" name="SkillYearsUsed" style="width:75px;" placeholder="# of yrs" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Add Skill / Interest" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> ADD SKILL / INTEREST</button></div>
+                    <span id="alertFrmSkills" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmSkills" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>
+
+<!-- Modal for Work Experience -->
+<div id="modalExperience" class="modal fade" role="dialog">
+    <form id="frmExperience" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=Experience#experience">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Add Work Experience</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row-fluid">
+                            <div class="col-md-6" style="border-right:solid 1px #eee;">
+                                <div><label for="ExperienceName">Company</label></div>
+                                <div><input class="form-control" type="text" id="JobCompanyName" name="JobCompanyName" placeholder="company name" /></div>
+                                <div><input class="form-control" type="text" id="JobCompanyAddress1" name="JobCompanyAddress1" placeholder="address" /></div>
+                                <div><input class="form-control" type="text" id="JobCompanyAddress2" name="JobCompanyAddress2" placeholder="address cont..." /></div>
+                                <div><input class="form-control" type="text" id="JobCompanyCity" name="JobCompanyCity" placeholder="city" /></div>
+                                <div><input class="form-control" type="text" id="JobCompanyZipcode" name="JobCompanyZipcode" placeholder="zipcode" /></div>
+                                <div>
+                                    <select class="form-control" id="JobCompanyStateId" name="JobCompanyStateId">
+                                        <option value="0">select state</option>
+                                        @foreach (State st in (List<State>)ViewBag.States)
+                                        {
+                                            <option value="@st.Id">@st.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-control" id="JobCompanyCountryId" name="JobCompanyCountryId" style="font-size:12px;">
+                                        <option value="0">select country</option>
+                                        @foreach (Country c in (List<Country>)ViewBag.Countries)
+                                        {
+                                            <option value="@c.Id">@c.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div><label for="JobPosition">Position</label></div>
+                                <input type="text" class="form-control" id="JobPosition" name="JobPosition" />
+
+                                <p>&nbsp;</p>
+                                <div><label for="JobFrom">From</label></div>
+                                <div><input class="form-control" type="text" id="JobFrom" name="JobFrom" placeholder="dd/mm/yyyy" /></div>
+
+                                <p>&nbsp;</p>
+                                <div><label for="JobTo">To</label></div>
+                                <div><input class="form-control" type="text" id="JobTo" name="JobTo" placeholder="dd/mm/yyyy" /></div>
+                            </div>
+                        </div>
+                        <div class="row-fluid">
+                            <div class="col-md-12">
+                                <p>&nbsp;</p>
+                                <textarea id="JobDescription" name="JobDescription" class="form-control" rows="5" placeholder="job description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Experience" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Add & Save</button></div>
+                    <span id="alertFrmExperience" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmExperience" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>
+
+<!-- Modal for Work Education -->
+<div id="modalEducation" class="modal fade" role="dialog">
+    <form id="frmEducation" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=Experience#experience">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Add Education</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row-fluid">
+                            <div class="col-md-7" style="border-right:solid 1px #eee;">
+                                <div><label for="SchoolName">School</label></div>
+            
+                                <hr style="padding:0px;margin:0px 0px 10px 0px;" />
+                                <div><input class="form-control" type="text" id="SchoolName" name="SchoolName" placeholder="name of school" /></div>
+                                <div><input class="form-control" type="text" id="SchoolAddress1" name="SchoolAddress1" placeholder="address" /></div>
+                                <div><input class="form-control" type="text" id="SchoolAddress2" name="SchoolAddress2" placeholder="address cont..." /></div>
+                                <div><input class="form-control" type="text" id="SchoolCity" name="SchoolCity" placeholder="city" /></div>
+                                <div>
+                                    <select class="form-control" id="SchoolStateId" name="SchoolStateId">
+                                        <option value="0">select state</option>
+                                        @foreach (State st in (List<State>)ViewBag.States)
+                                        {
+                                            <option value="@st.Id">@st.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-control" id="SchoolCountryId" name="SchoolCountryId" style="font-size:12px;">
+                                        <option value="0">select country</option>
+                                        @foreach (Country c in (List<Country>)ViewBag.Countries)
+                                        {
+                                            <option value="@c.Id">@c.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-5" style="border-right:solid 1px #eee;">
+                                <div><label for="SchoolAttendedFrom">From</label></div>
+                                <div><input class="form-control" type="text" id="SchoolFrom" name="SchoolFrom" placeholder="dd/mm/yyyy" /></div>
+
+                                <p>&nbsp;</p>
+                                <div><label for="SchoolAttendedTo">To</label></div>
+                                <div><input class="form-control" type="text" id="SchoolTo" name="SchoolTo" placeholder="dd/mm/yyyy" /></div>
+
+                                <p>&nbsp;</p>
+                                <div><label for="SchoolState">Degree / Diploma / Cert</label></div>
+                                <div><input class="form-control" type="text" id="SchoolCertification" name="SchoolCertification" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Education" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Add & Save</button></div>
+                    <span id="alertFrmEducation" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmEducation" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>
+
+<!-- Modal for Business List -->
+<div id="modalBusinessList" class="modal fade" role="dialog">
+    <form id="frmBusinessList" method="post" action="profile?id=@acctProfile.Id&edit=1&panel=BusinessList#businesslist">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Add Business Location</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row-fluid">
+                            <div class="col-md-6" style="border-right:solid 1px #eee;">
+                                <div><label for="BusinessName">Business</label></div>
+                                <div><input class="form-control" type="text" id="BusinessName" name="BusinessName" placeholder="business name" /></div>
+                                <div><input class="form-control" type="text" id="BusinessAddress1" name="BusinessAddress1" placeholder="address" /></div>
+                                <div><input class="form-control" type="text" id="BusinessAddress2" name="BusinessAddress2" placeholder="address cont..." /></div>
+                                <div><input class="form-control" type="text" id="BusinessCity" name="BusinessCity" placeholder="city" /></div>
+                                <div><input class="form-control" type="text" id="BusinessZipcode" name="BusinessZipcode" placeholder="zipcode" /></div>
+                                <div>
+                                    <select class="form-control" id="BusinessStateId" name="BusinessStateId">
+                                        <option value="0">select state</option>
+                                        @foreach (State st in (List<State>)ViewBag.States)
+                                        {
+                                            <option value="@st.Id">@st.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="form-control" id="BusinessCountryId" name="BusinessCountryId" style="font-size:10px;">
+                                        <option value="0">select country</option>
+                                        @foreach (Country c in (List<Country>)ViewBag.Countries)
+                                        {
+                                            <option value="@c.Id">@c.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div><label for="BusinessProduct">Product / Service</label></div>
+                                <div>(Separate with commas)</div>
+                                <div><textarea class="form-control" id="BusinessProduct" name="BusinessProduct" placeholder="Example: tvs,laptops,macs,pcs" rows="8"></textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Add Business" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> Add & Save</button></div>
+                    <span id="alertFrmBusinessList" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                    <img id="loadingFrmBusinessList" class="loading pull-right" src="~/images/loading.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+</div>

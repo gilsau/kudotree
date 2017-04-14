@@ -1,0 +1,68 @@
+﻿@using Kudotree
+@{
+    Account acctCurrent = Session["User"] == null ? new Account() : (Account)Session["User"];
+    
+    KudotreeEntities db = new KudotreeEntities();
+    
+    int profileId = Request.QueryString["id"] != null ? int.Parse(Request.QueryString["id"].ToString()) : 0;
+    Account acctProfile = profileId > 0 ? db.Accounts.SingleOrDefault(a => a.Id == profileId) : acctCurrent;
+    
+    bool bMyself = acctCurrent.Id == profileId;
+
+    bool profilePage = Request.Url.ToString().ToLower().IndexOf("/profile") > -1;
+    bool kudotreePage = Request.Url.ToString().ToLower().IndexOf("/kudotree/manage") > -1;
+}
+
+@if (profilePage)
+{
+    <p></p>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-head1">
+          @string.Format("{0} {1}", acctProfile.Firstname, acctProfile.Lastname)
+
+      </div>
+      <div class="panel-body" style="padding:5px;">
+        <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+      </div>
+    </div>
+
+    //Only show calendar if viewing someone else's profile, NOT my own
+    if(!bMyself)
+    {
+        <p>&nbsp;</p>
+        <div id="calendarContainer">
+            @{ ViewBag.Year = DateTime.Now.Year; ViewBag.Month = DateTime.Now.Month; }
+            @Html.Partial("Calendar", 2)
+        </div>
+    }
+}
+
+@if (!kudotreePage)
+{
+    <p></p>
+    <div class="panel panel-default">
+      <div class="panel-heading panel-head1">NEEDS OF NETWORK</div>
+      <div class="panel-body" style="padding:5px;">
+        <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+      </div>
+    </div>
+}
+
+<p></p>
+@if (kudotreePage)
+{
+    <p></p>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-head1">SUGGESTED CONNECTIONS</div>
+        <div class="panel-body" style="padding:5px;">
+            <div style="width:30%;margin:auto;"><img src="~/images/icon_noresults.jpg" style="width:100%;" /></div>
+        </div>
+    </div>
+}
+
+<p></p>
+<div class="panel panel-default margin5">
+  <div class="panel-body" style="height:150px;">
+    AD GOES HERE
+  </div>
+</div>

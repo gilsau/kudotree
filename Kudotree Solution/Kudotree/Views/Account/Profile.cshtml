@@ -1,0 +1,249 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@using Kudotree.Helpers
+@using System.Linq;
+@using System.Linq.Expressions;
+@{
+    ViewBag.Title = "Profile";
+    
+    KudotreeEntities db = new KudotreeEntities();
+    
+    int id = Request.QueryString["id"] != null ? int.Parse(Request.QueryString["id"].ToString()) : 0;
+    Account acctCurrent = (Account)Session["User"];
+    Account acctProfile = id > 0 ? db.Accounts.SingleOrDefault(a => a.Id == id) : acctCurrent;
+
+    bool bMyself = acctCurrent != null ? acctCurrent.Id == acctProfile.Id : false;
+    bool bEdit = Request.QueryString["edit"] != null;
+    bool bVerify = (TempData["verify"] != null) ? true : false;
+    
+    string city = !string.IsNullOrEmpty(acctProfile.City) ? acctProfile.City + "," : string.Empty;
+    string state = acctProfile.State != null ? acctProfile.State.Abbrev : string.Empty;
+    string country = acctProfile.Country != null ? acctProfile.Country.Abbrev : string.Empty;
+    string zip = acctProfile.Zipcode != null ? acctProfile.Zipcode : string.Empty;
+
+    int kudos = acctProfile.AccountKudoes1.Count();
+    int connections = acctProfile.AccountConnections.Count();
+    int prefers = 0;
+    bool connectionRequested = acctCurrent != null ? (acctProfile.Communications.Where(c => c.ActionId == (int)ActionType.ConnectRequest && c.StatusId == (int)StatusType.New && c.SenderId == acctCurrent.Id).Count() > 0) ||
+                            (acctProfile.Communications1.Where(c => c.ActionId == (int)ActionType.ConnectRequest && c.StatusId == (int)StatusType.New && c.ReceiverId == acctCurrent.Id).Count() > 0) : false;
+    bool connected = acctCurrent != null ? acctProfile.AccountConnections.Where(c => c.ConnectionId == acctCurrent.Id).Count() > 0 : false;
+
+}
+
+@section Scripts{
+    <script src="~/scripts/calendar.js"></script>
+    <script src="~/scripts/profile.js"></script>
+}
+
+
+@if (acctCurrent == null)
+{
+    <div class="center-block" style="width:60%;margin-top:20px;">
+        <a href="javascript:window.history.back();"><span class="glyphicon glyphicon-hand-left"></span> Back To Search Results</a>
+    </div>
+}
+
+<div class="container-fluid" style="padding:20px; @{ if(acctCurrent == null){ <text>width:60%;margin:20px auto 200px auto;background-color:#fff;</text> }else{ <text>margin:0px;</text> } }">
+
+    @if(bVerify){
+        <h2>Welcome to Kudo Tree!</h2>
+        <div class="alert alert-info">Your account has been verified!</div>
+        <p></p>
+        <h3>@acctProfile.Firstname, Let’s begin your Kudo Tree profile!</h3>
+    }
+
+
+    @if (bMyself)
+    {
+        <div class="row-fluid">
+            <div class="col-md-12">
+                @if (bEdit)
+                {
+                    <a data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="View Profile" class="pull-right btn btn-sm btn-primary" href="?id=@acctProfile.Id"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;SWITCH TO VIEW MODE</a>
+                }
+            </div>
+        </div>
+    }
+
+    <form id="frmProfile" name="frmProfile" method="post" enctype="multipart/form-data" action="profile?id=@acctProfile.Id&edit=1&panel=Profile#profile">
+    <div class="panel">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div><img src="~/profilepics/@acctProfile.ProfilePic" class="roundImg" /></div>
+                    @if (bEdit)
+                    {
+                        <div><a id="profile-camera-icon" style="margin-left:10px;" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Update Profile Pic" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-camera"></span></a></div>
+                        <p>&nbsp;</p>
+                        <small id="profile-camera-filename"></small>
+                    }
+                </div>
+                <div class="col-sm-7">
+                    @if (bEdit)
+                    {
+                        <div><input type="text" id="Firstname" name="Firstname" placeholder="firstname" value="@acctProfile.Firstname" class="profile-input" /> <input type="text" id="Lastname" name="Lastname" placeholder="lastname" value="@acctProfile.Lastname" class="profile-input" /></div>
+                        <input type="text" id="City" name="City" placeholder="city" value="@acctProfile.City" class="profile-input" />
+                        <select id="StateId" name="StateId" class="profile-input">
+                            <option value="0">select state</option>
+                            @foreach (State st in (List<State>)ViewBag.States)
+                            {
+                                <option value="@st.Id" @if (st.Id == acctProfile.StateId) { <text>selected</text>}>@st.Name</option>
+                            }
+                        </select>
+                        <select id="CountryId" name="CountryId" class="profile-input" style="font-size:10px;">
+                            <option value="0">select country</option>
+                            @foreach (Country c in (List<Country>)ViewBag.Countries)
+                            {
+                                <option value="@c.Id" @if (c.Id == acctProfile.CountryId) { <text>selected</text>}>@c.Name</option>
+                            }
+                        </select>
+                        <input type="text" id="Zipcode" name="Zipcode" placeholder="zipcode" value="@acctProfile.Zipcode" class="profile-input" />
+                    
+                        <p>&nbsp;</p>
+                        <div><input type="text" id="Email" name="Email" placeholder="email address" value="@acctProfile.Email" class="profile-input" style="width:100%;" /></div>
+                        <div><input type="password" id="Password" name="Password" placeholder="password" class="profile-input" /><input type="password" id="Password2" name="Password2" placeholder="confirm password" class="profile-input" /></div>
+                
+                        <div style="margin-top:20px;">
+                            <input type="radio" name="Gender" value="1" @( acctProfile.Gender == 1 ? "checked='checked'" : "" ) />&nbsp;Male
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="Gender" value="2" @( acctProfile.Gender == 2 ? "checked='checked'" : "" ) />&nbsp;Female
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" id="DOB" name="DOB" placeholder="date of birth (dd/mm/yyyy)" class="profile-input" value="@string.Format("{0:MM/dd/yyyy}", acctProfile.DOB)" />
+                        </div>
+                    }
+                    else{
+                        <h3>@acctProfile.Firstname @acctProfile.Lastname</h3>
+                        <h4>@acctProfile.JobTitle</h4>
+                        <h4>@city @state @country</h4>
+                
+                        <div style="margin-top:20px;">
+                            @if(acctProfile.JobSeeker == true){ <span class="glyphicon glyphicon-check"></span> } else{ <span class="glyphicon glyphicon-unchecked"></span> }
+                            &nbsp;Job Seeker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                            @if(acctProfile.BusinessOwner == true){ <span class="glyphicon glyphicon-check"></span> } else{ <span class="glyphicon glyphicon-unchecked"></span> }
+                            &nbsp;Business Owner/Rep&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                            @if(acctProfile.Student == true){ <span class="glyphicon glyphicon-check"></span> } else{ <span class="glyphicon glyphicon-unchecked"></span> }
+                            &nbsp;Student
+                        </div>
+                    
+                        if(!bMyself && acctCurrent != null){
+                        <div style="margin-top:20px;">
+                            <a href="#kudoModal" data-id="@acctProfile.Id" data-toggle="modal" data-name="@acctProfile.Firstname @acctProfile.Lastname" class="btnKudos btn btn-sm btn-primary"><span class="glyphicon glyphicon-comment" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Give Kudos"></span>&nbsp;&nbsp;Give Kudos</a>
+                            <a data-to-id="@acctProfile.Id" class="btnConnect btn btn-sm btn-primary" @if(connectionRequested || connected){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-user" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Connect With User"></span>&nbsp;&nbsp; @if(connectionRequested){ <text>Connection Requested</text> } else { if(connected){ <text>Connected</text> } else{ <text>Connect</text> } }</a>
+                            <a href="#msgModal" data-toggle="modal" data-to-id="@acctProfile.Id" data-to-name="@string.Format("{0} {1}", acctProfile.Firstname, acctProfile.Lastname)" class="btnMsg btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Send Message"></span>&nbsp;&nbsp;Message</a>
+                        </div>
+                        }
+                    }
+                </div>
+
+                @if (!bEdit && !bMyself && acctCurrent != null)
+                {
+                <div class="col-sm-2">
+                    <a href="#prefModal" data-id="@acctProfile.Id" data-toggle="modal" data-name="@acctProfile.Firstname @acctProfile.Lastname" class="btnAddToPrefNet btn btn-sm btn-primary"><span class="glyphicon glyphicon-star" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Add to Preferred Networks"></span>&nbsp;&nbsp;Prefer</a>
+                </div>
+                }
+            </div>
+        
+            <div class="row" style="padding:5px;margin:10px;border-top:solid 1px #eee;border-bottom:solid 1px #eee;">
+                <div class="col-sm-4" style="text-align:center;">@kudos <a href="#modalKudoList" data-toggle="modal">Kudos</a></div>
+                <div class="col-sm-4" style="text-align:center;">@connections Connections</div>
+                <div class="col-sm-4" style="text-align:center;">@prefers Prefer This Profile</div>
+            </div>
+
+            @if(bEdit){
+            <div class="row">
+                <div><button type="submit" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Save Personal Info" class="pull-right btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk">&nbsp;SAVE</span></button></div>
+                <span id="alertFrmProfile" class="alert alert-warning pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;"></span>
+                <img id="loadingFrmProfile" class="loading pull-right" src="~/images/loading.gif" />
+                <span id="msgFrmProfile" class="alert alert-info pull-right" style="display:none;margin-right:5px;padding:5px 10px 5px 10px;">@ViewBag.Msg <span class="glyphicon glyphicon-ok"></span></span>
+            </div>
+            }
+
+            @if (bMyself)
+            {
+            <div class="row-fluid">
+                <div class="col-md-12">
+                    @if (!bEdit)
+                    {
+                        <a data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-content="Edit Profile" class="pull-right btn btn-sm btn-primary" href="?id=@acctProfile.Id&edit=1"><span class="glyphicon glyphicon-pencil">&nbsp;EDIT</span></a>
+                    }
+                </div>
+            </div>
+            }
+        
+        </div>
+    </div>
+
+        <input type="file" id="ProfilePic" name="ProfilePic" style="visibility:hidden;" />
+
+        <input type="hidden" name="JobSeeker" value="@acctProfile.JobSeeker.ToString()" />
+        <input type="hidden" name="JobSeekerKudoHelp" value="@acctProfile.JobSeekerKudoHelp.ToString()" />
+        <input type="hidden" name="BusinessOwner" value="@acctProfile.BusinessOwner.ToString()" />
+        <input type="hidden" name="BusinessOwnerKudoHelp" value="@acctProfile.BusinessOwnerKudoHelp.ToString()" />
+        <input type="hidden" name="Student" value="@acctProfile.Student.ToString()" />
+        <input type="hidden" name="StudentKudoHelp" value="@acctProfile.StudentKudoHelp.ToString()" />
+    </form>
+
+    <!-- Tabs navigation -->
+    <ul class="nav nav-tabs">
+        <li class="@if(!bEdit){<text>active</text>}"><a href="#tab1" data-toggle="tab">Timeline</a></li>
+        <li class="@if(bEdit){<text>active</text>}"><a href="#tab2" data-toggle="tab">Professional Matrix</a></li>
+        <li><a href="#tab3" data-toggle="tab">Portfolio</a></li>
+    
+        @if(bMyself){
+            <li><a href="#tab4" data-toggle="tab">Calendar Requests</a></li>
+            <li><a href="#tab5" data-toggle="tab">Need Requests</a></li>
+        }
+    </ul>
+
+    <!-- Tab Sections -->
+    <div class="tab-content">
+        <div class="tab-pane @if(!bEdit){<text>active</text>}" id="tab1"></div>
+        <div class="tab-pane @if(bEdit){<text>active</text>}" id="tab2">
+            @Html.Partial("ProfileProfessionalMatrix", acctProfile)
+        </div>
+        <div class="tab-pane" id="tab3"></div>
+    
+        @if(bMyself){
+            <div class="tab-pane" id="tab4"></div>
+            <div class="tab-pane" id="tab5"></div>
+        }
+    </div>
+
+</div>
+
+<!-- Kudo List -->
+<div id="modalKudoList" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form-horizontal">
+                <div class="modal-header">
+                    <a href="#" class="pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4>Kudos for @string.Format("{0} {1}", acctProfile.Firstname, acctProfile.Lastname)</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="max-height:500px;overflow-y:scroll;">
+                        @if(kudos > 0){
+                            foreach (AccountKudo kudo in acctProfile.AccountKudoes1)
+                            {
+                                <div class="panel panel-default" style="margin:10px 50px 10px 50px;">
+                                    <div class="panel-heading" style="padding:5px;">
+                                        @{ ViewBag.AcctProfile = kudo.Account; ViewBag.AcctProfilePostCreated = kudo.Created; ViewBag.PicHeight = 20; }
+                                        @Html.Partial("ProfileLink")
+                                    </div>
+                                    <div class="panel-body">
+                                        @Html.Raw(kudo.Comment.Replace(Environment.NewLine, "<br/>"))
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else{
+                            <div style="text-align:center;"><h4 style="color:#808080;">No kudos were found.</h4></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@using Kudotree
+@using Kudotree.Helpers
+@model IEnumerable<Communication>
+
+@{  IList<Communication> msgs = Model == null ? new List<Communication>() : Model.OrderBy(m => m.LastUpdated).ToList();
+
+    Account acctCurrent = (Account)Session["User"];
+
+    if(acctCurrent != null){
+        foreach(Communication msg in msgs)
+        {
+            //Save 'To Account' so you can save messages with their id, when sending them a message
+            ViewBag.ToAcctId = (msg.ReceiverId != acctCurrent.Id) ? msg.ReceiverId : msg.SenderId;
+
+            string days, hours, mins;
+            TimeUtility.LongAgo(out days, out hours, out mins, msg.Created);
+                    
+            <div class="row-fluid" style="padding:5px;">
+                <div><b>@string.Format("{0} {1}", msg.Account1.Firstname, msg.Account1.Lastname)</b>&nbsp;<small class="text-info pull-right" style="font-size:10px;">@string.Format("{0} {1} {2} ago", days, hours, mins)</small></div>
+                <div class="messageid" data-id="@msg.Id">@msg.Msg</div>
+            </div>
+            <hr style="margin:0px;padding:5px;" />
+        }
+    }
+}

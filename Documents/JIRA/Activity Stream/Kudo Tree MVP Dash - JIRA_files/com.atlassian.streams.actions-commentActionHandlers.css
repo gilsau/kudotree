@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.streams.actions:commentActionHandlers', location = '/css/streams/comment.css' */
+.activity-item-comment-form *{color:black}.activity-item-comment-form{margin:5px 1em 0 0}.activity-item-comment-form textarea{overflow:auto;resize:none;width:100%}.activity-item-comment-form .submit{margin-top:.6em}.activity-item-comment-form button{margin-bottom:-0.1em;margin-right:.6em;vertical-align:bottom}.activity-item-comment-form a.streams-cancel{font-weight:normal}

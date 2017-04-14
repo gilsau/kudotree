@@ -1,0 +1,294 @@
+﻿@using Kudotree
+@using Kudotree.Models
+@{
+    ViewBag.Title = "Search";
+    
+    Account acctCurrent = (Account)Session["User"];
+
+    int lastId = 0;
+}
+
+
+@if (acctCurrent == null)
+{
+    <div class="center-block" style="margin-top:50px;padding:20px;width:40%;height:120px;background-color:#efefef;font-size:14pt;">
+        <div>Search Kudotree and connect with</div>
+        <form action="/home/search" method="post">
+        <div class="row">
+            <div class="col-md-10">
+                <input id="Keywords" name="Keywords" type="text" class="form-control" placeholder="services, people, skills, companies and more ..." value="@Request.Form["Keywords"].ToString()" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-md btn-green">Go!</button>
+            </div>
+        </div>
+        </form>
+    </div>
+}
+
+<div class="panel panel-default" style="@{ if(acctCurrent == null){ <text>width:50%;margin:50px auto 50px auto;</text> }else{ <text>margin:20px;</text> } }">
+    <div class="panel-heading">
+        People
+    </div>
+    <div class="panel-body">
+        @{ lastId=0; }
+        @if (((IEnumerable<Account>)ViewBag.People).Count() > 0){
+        <table class="table table-striped table-hover">
+            <tbody>
+                @foreach (Account acct in ViewBag.People)
+                {
+                    //Only render unique records
+                    if(lastId != acct.Id){
+                    
+                        string city = acct.City != null ? acct.City : string.Empty;
+                        string state = acct.State != null ? acct.State.Name : string.Empty;
+                        string cntry = acct.Country != null ? acct.Country.Name : string.Empty;
+
+                        if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                        bool connectionRequested = acctCurrent != null ? (acct.Communications.Where(c => c.ActionId == (int)ActionType.ConnectRequest && c.StatusId == (int)StatusType.New && c.SenderId == acctCurrent.Id).Count() > 0) ||
+                            (acct.Communications1.Where(c => c.ActionId == (int)ActionType.ConnectRequest && c.StatusId == (int)StatusType.New && c.ReceiverId == acctCurrent.Id).Count() > 0) : false;
+                        bool connected = acctCurrent != null ? acct.AccountConnections.Where(c => c.ConnectionId == acctCurrent.Id).Count() > 0 : false;
+                        bool myself = acctCurrent != null ? acct.Id == acctCurrent.Id : false;
+                        
+                        <tr>
+                            <td style="padding:5px;vertical-align:top;">
+                                <a href="~/account/profile?id=@acct.Id"><img src="~/profilepics/@acct.ProfilePic" style="height:50px;" /></a>
+                            </td>
+                            <td style="padding:5px;vertical-align:top;">
+                                <b>@string.Format("{0} {1}", acct.Firstname, acct.Lastname)</b>
+                                <div>@acct.JobTitle</div>
+                                <div>@string.Format("{0} {1} {2}", city, state, cntry)</div>
+                            </td>
+                            <td style="text-align:right;">
+                                @if(acctCurrent != null){
+                                    <a data-to-id="@acct.Id" class="btnConnect btn btn-sm btn-primary" @if(connectionRequested || connected || myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-plus" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Connect With User"></span></a>
+                                    <a href="#kudoModal" data-id="@acct.Id" data-toggle="modal" data-name="@acct.Firstname @acct.Lastname" class="btnKudos btn btn-sm btn-primary" @if(myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-thumbs-up" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Give Kudos"></span></a>
+                                    <a data-to-id="@acct.Id" data-to-name="@string.Format("{0} {1}", acct.Firstname, acct.Lastname)" class="btnMsg btn btn-sm btn-primary" href="#msgModal" data-toggle="modal" @if(myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-pencil" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Send Message"></span></a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                    lastId = acct.Id;
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <div style="text-align:center;color:#808080;">NO PEOPLE MATCHED YOUR SEARCH</div>
+        }
+    </div>
+</div>
+
+<div class="panel panel-default" style="@{ if(acctCurrent == null){ <text>width:50%;margin:50px auto 50px auto;</text> }else{ <text>margin:20px;</text> } }">
+    <div class="panel-heading">
+        Skills
+    </div>
+    <div class="panel-body">
+        @{ lastId=0; }
+        @if (((IEnumerable<Account>)ViewBag.Skills).Count() > 0){
+        <table class="table table-striped table-hover">
+            <tbody>
+                @foreach (Account acct in ViewBag.Skills)
+                {
+                    //Only render unique records
+                    if(lastId != acct.Id){
+                        
+                        string city = acct.City != null ? acct.City : string.Empty;
+                        string state = acct.State != null ? acct.State.Name : string.Empty;
+                        string cntry = acct.Country != null ? acct.Country.Name : string.Empty;
+
+                        if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                        bool connectionRequested = acctCurrent != null ? acct.Communications1.Where(c => c.ActionId == (int)ActionType.ConnectRequest && c.StatusId == (int)StatusType.New && c.SenderId == acctCurrent.Id).Count() > 0 : false;
+                        bool connected = acctCurrent != null ? acct.AccountConnections.Where(c => c.ConnectionId == acctCurrent.Id).Count() > 0 : false;
+                        bool myself = acctCurrent != null ? acct.Id == acctCurrent.Id : false;
+                        
+                        <tr>
+                            <td style="padding:5px;vertical-align:top;">
+                                <a href="~/account/profile?id=@acct.Id"><img src="~/profilepics/@acct.ProfilePic" style="height:50px;" /></a>
+                            </td>
+                            <td style="padding:5px;vertical-align:top;">
+                                <b>@string.Format("{0} {1}", acct.Firstname, acct.Lastname)</b>
+                                <div>@acct.JobTitle</div>
+                                <div>@string.Format("{0} {1} {2}", city, state, cntry)</div>
+                            </td>
+                            <td>
+                                @foreach (AccountSkill skill in acct.AccountSkills)
+                                {
+                                    <span style="padding:5px;background-color:#fff;border:solid 1px #eee;">@skill.Name</span>
+                                }
+                            </td>
+                            <td style="text-align:right;">
+                                @if(acctCurrent != null){
+                                    <a data-to-id="@acct.Id" class="btnConnect btn btn-sm btn-primary" @if(connectionRequested || connected || myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-plus" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Connect With User"></span></a>
+                                    <a href="#kudoModal" data-id="@acct.Id" data-toggle="modal" data-name="@acct.Firstname @acct.Lastname" class="btnKudos btn btn-sm btn-primary" @if(myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-thumbs-up" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Give Kudos"></span></a>
+                                    <a data-to-id="@acct.Id" data-to-name="@string.Format("{0} {1}", acct.Firstname, acct.Lastname)" class="btnMsg btn btn-sm btn-primary" href="#msgModal" data-toggle="modal" @if(myself){ <text>disabled="disabled"</text> }><span class="glyphicon glyphicon-pencil" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Send Message"></span></a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    
+                    lastId = acct.Id;
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <div style="text-align:center;color:#808080;">NO SKILLS MATCHED YOUR SEARCH</div>
+        }
+    </div>
+</div>
+
+<div class="panel panel-default" style="@{ if(acctCurrent == null){ <text>width:50%;margin:50px auto 50px auto;</text> }else{ <text>margin:20px;</text> } }">
+    <div class="panel-heading">
+        Companies
+    </div>
+    <div class="panel-body">
+        @{ lastId=0; }
+        @if (((IEnumerable<Business>)ViewBag.Companies).Count() > 0){
+        <table class="table table-striped table-hover">
+            <tbody>
+                @foreach (Business bus in ViewBag.Companies)
+                {
+                    //Only render unique accounts
+                    if(lastId != bus.Id){
+
+                        string city = bus.City != null ? bus.City : string.Empty;
+                        string state = bus.State != null ? bus.State.Name : string.Empty;
+                        string cntry = bus.Country != null ? bus.Country.Name : string.Empty;
+
+                        if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                        <tr>
+                            <td style="padding:5px;vertical-align:top;">
+                                <div><b>@bus.Name</b></div>
+                                <div>@string.Format("{0} {1}", city, state)</div>
+                                <div>@cntry</div>
+                            </td>
+                            <td>
+                                @foreach (BusinessProductService prod in bus.BusinessProductServices)
+                                {
+                                    <span style="padding:5px;background-color:#fff;border:solid 1px #eee;">@prod.ProductService</span>
+                                }
+                            </td>
+                            <td style="padding:5px;vertical-align:top;">
+                                @foreach(Account acct in bus.AccountBusinesses.Select(ab => ab.Account))
+                                {
+                                    city = acct.City != null ? acct.City : string.Empty;
+                                    state = acct.State != null ? acct.State.Name : string.Empty;
+                                    cntry = acct.Country != null ? acct.Country.Name : string.Empty;
+
+                                    if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                                    <a href="~/account/profile?id=@acct.Id">
+                                    <div style="padding:5px;background-color:#fff;border:solid 1px #eee;width:auto;">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding:5px;vertical-align:top;"><img src="~/profilepics/@acct.ProfilePic" style="height:30px;" /></td>
+                                                    <td style="padding:5px;vertical-align:top;font-size:10px;">
+                                                        <b>@string.Format("{0} {1}", acct.Firstname, acct.Lastname)</b>
+                                                        <div>@string.Format("{0} {1}", city, state)</div>
+                                                        <div>@cntry</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    
+                    lastId = bus.Id;
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <div style="text-align:center;color:#808080;">NO COMPANIES MATCHED YOUR SEARCH</div>
+        }
+    </div>
+</div>
+
+<div class="panel panel-default" style="@{ if(acctCurrent == null){ <text>width:50%;margin:50px auto 50px auto;</text> }else{ <text>margin:20px;</text> } }">
+    <div class="panel-heading">
+        Services
+    </div>
+    <div class="panel-body">
+        @{ lastId=0; }
+        @if (((IEnumerable<Business>)ViewBag.Services).Count() > 0){
+        <table class="table table-striped table-hover">
+            <tbody>
+                @foreach (Business bus in ViewBag.Services)
+                {
+                    //Only render unique accounts
+                    if(lastId != bus.Id){
+
+                        string city = bus.City != null ? bus.City : string.Empty;
+                        string state = bus.State != null ? bus.State.Name : string.Empty;
+                        string cntry = bus.Country != null ? bus.Country.Name : string.Empty;
+
+                        if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                        <tr>
+                            <td style="padding:5px;vertical-align:top;">
+                                <div><b>@bus.Name</b></div>
+                                <div>@string.Format("{0} {1}", city, state)</div>
+                                <div>@cntry</div>
+                            </td>
+                            <td>
+                                @foreach (BusinessProductService prod in bus.BusinessProductServices)
+                                {
+                                    <span style="padding:5px;background-color:#fff;border:solid 1px #eee;">@prod.ProductService</span>
+                                }
+                            </td>
+                            <td style="padding:5px;vertical-align:top;">
+                                @foreach(Account acct in bus.AccountBusinesses.Select(ab => ab.Account))
+                                {
+                                    city = acct.City != null ? acct.City : string.Empty;
+                                    state = acct.State != null ? acct.State.Name : string.Empty;
+                                    cntry = acct.Country != null ? acct.Country.Name : string.Empty;
+
+                                    if (!string.IsNullOrEmpty(city) && !string.IsNullOrEmpty(state)) { city = city + ", "; }
+
+                                    <a href="~/account/profile?id=@acct.Id">
+                                    <div style="padding:5px;background-color:#fff;border:solid 1px #eee;width:auto;">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding:5px;vertical-align:top;"><img src="~/profilepics/@acct.ProfilePic" style="height:30px;" /></td>
+                                                    <td style="padding:5px;vertical-align:top;font-size:10px;">
+                                                        <b>@string.Format("{0} {1}", acct.Firstname, acct.Lastname)</b>
+                                                        <div>@string.Format("{0} {1}", city, state)</div>
+                                                        <div>@cntry</div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                    
+                    lastId = bus.Id;
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <div style="text-align:center;color:#808080;">NO SERVICES MATCHED YOUR SEARCH</div>
+        }
+    </div>
+</div>
+
+<div style="height:1000px;">&nbsp;</div>

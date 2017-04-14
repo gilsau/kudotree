@@ -1,0 +1,2 @@
+/* module-key = 'com.atlassian.gadgets.publisher:ajax', location = 'ajax/ajax.css' */
+#ag-sys-msg{padding:10px;display:none;}#ag-sys-msg p{margin-top:0;margin-bottom:5px;}#ag-sys-msg :last-child{margin-bottom:0;}#ag-sys-msg .oauth-approve{background-image:url("//d2p4ir3ro0j0cb.cloudfront.net/kudotree.atlassian.net/s/en_US-9fbd4d/64007/8/3.10.4/_/download/resources/com.atlassian.gadgets.publisher:ajax/images/btn-locked.png");background-position:2px 0;background-repeat:no-repeat;padding:2px 2px 2px 20px;}#ag-sys-msg .ag-requests{display:none;padding-bottom:5px;}
